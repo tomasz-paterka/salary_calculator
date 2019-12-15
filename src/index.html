@@ -1,13 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Salary calculator</title>
+  <title>Kalkulator wynagrodzeń</title>
 </head>
+
 <body>
-  <div>Add salary</div>
-  <input type="text" id="salary">
+  <div class="container">
+    <header>
+      <h3>Kalkulator wynagrodzeń dla dochodów uzyskanych od 01.01.2020r.</h3>
+      <div class="selection-container">
+        <label for="tax-year">Rok podatkowy</label>
+        <select name="tax-years" id="tax-year">
+          <option value="2020">2020</option>
+          <option value="2019">2019</option>
+          <option value="2018">2018</option>
+        </select>
+      </div>
+    </header>
+  
+    <section class="salary-parameters">
+      <div class="salary">
+        <h4>Wynagrodzenie miesięczne brutto</h4>
+        <input type="text" name="salary" autocomplete="off">
+      </div>
+
+      <div class="contract-type">
+        <h4>Rodzaj umowy</h4>
+        <div class="contracts">
+          <input checked type="radio" id="employment_contract" name="contract" value="employment">
+          <label for="employment_contract">Umowa o pracę</label>
+          <input type="radio" id="mandate_contract" name="contract" value="mandate">
+          <label for="mandate_contract">Umowa zlecenie</label>
+          <input type="radio" id="work_contract" name="contract" value="work">
+          <label for="work_contract">Umowa o dzieło</label>
+        </div>
+      </div>
+    </section>
+  </div>
+
+
 </body>
+
 </html>

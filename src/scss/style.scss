@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+$main-font: 'Open Sans', sans-serif;
+
 * {
   margin: 0;
   padding: 0;
@@ -5,5 +8,42 @@
 }
 
 body {
-  background-color: red
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-family: $main-font;
+}
+
+header {
+  margin-top: 50px;
+  .selection-container {
+    padding: 10px 0;
+  }
+}
+
+h4 {
+  margin: 20px 0;
+}
+
+.salary-parameters {
+  .salary {
+    margin-top: 30px;
+    input {
+      padding: 5px;
+      text-align: end;
+      width: 50%;
+    }
+  }
+
+  .contract-type {
+    padding: 20px 0;
+    .contracts {
+      display: flex;
+      align-items: center;
+      label {
+        padding: 0 20px 0 5px;
+      }
+    }
+  }
 }
