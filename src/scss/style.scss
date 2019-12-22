@@ -47,3 +47,16 @@ h4 {
     }
   }
 }
+
+.btn {
+  padding: 15px 30px;
+  background-color: #5266FF;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: #507CFF;
+  }
+}
