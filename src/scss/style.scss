@@ -26,6 +26,12 @@ h4 {
   margin: 20px 0;
 }
 
+.container {
+  margin: 0 auto;
+  padding: 0 15px;
+  // width: 100%;
+}
+
 .salary-parameters {
   .salary {
     margin-top: 30px;
@@ -58,5 +64,61 @@ h4 {
   &:hover {
     transition: all 0.2s ease-in-out;
     background-color: #507CFF;
+  }
+}
+
+.result {
+  margin-top: 40px;
+  .result-container {
+    display: flex;
+    flex-wrap: wrap;
+    visibility: hidden;
+    .employee-column,
+    .employer-column {
+      flex: 100%;
+      max-width: 100%;
+      border: 1px solid #000;
+      
+      p {
+        font-weight: bold;
+        margin-bottom: 10px;
+        border-bottom: 1px solid #000;
+        padding: 10px 0 10px 5px;
+      }
+
+      li {
+        padding: 2.5px 0;
+      }
+    }
+    
+    .employee-list,
+    .employer-list {
+      list-style: none;
+      padding-left: 5px;
+    }
+  }
+}
+
+
+/* RESPONSIVE STYLES */
+
+@media screen and (max-width: 767.98px) {
+  .employer-column {
+    margin-top: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .result {
+    .result-container {
+      .employee-column,
+      .employer-column {
+        flex: 50%;
+        max-width: 50%;
+      }
+      .employee-column {
+        border-right: none;
+      }
+    }
   }
 }

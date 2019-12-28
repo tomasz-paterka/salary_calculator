@@ -1,6 +1,6 @@
 export default class Salary {
   constructor(payment) {
-    this.payment = payment;
+    this.payment = payment.toFixed(2);
   }
 
   calcInsurance() {
@@ -11,5 +11,6 @@ export default class Salary {
     this.diseaseIns = ((this.payment * 2.45) / 100).toFixed(2);
     this.healthIns = ((this.payment * 9.00) / 100).toFixed(2);
     this.taxHealthIns = ((this.payment * 7.75) / 100).toFixed(2);
+    this.accidentIns = ((this.payment * 1.67) / 100).toFixed(2);
   };
 };
