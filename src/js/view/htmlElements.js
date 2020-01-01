@@ -1,6 +1,6 @@
 export const elements = {
   salaryInput: document.getElementById('salaryInput'),
-  calcBtn: document.querySelector('.btn'),
+  calcBtn: document.querySelector('.result_btn'),
   resultContainer: document.querySelector('.result-container'),
   employeeResults: document.querySelector('.employee-list'),
   employerResults: document.querySelector('.employer-list'),
@@ -8,6 +8,8 @@ export const elements = {
   mandate: document.getElementById('mandate_contract'),
   work: document.getElementById('work_contract'),
   agreements: document.querySelectorAll('input[type="radio"]'),
-  contractsDetail: document.querySelector('.contract_details')
+  contractsDetail: document.querySelector('.contract_details'),
+  contractsBtn: document.querySelectorAll('.contracts_btn')
 };
 
+// console.dir(elements.contract);

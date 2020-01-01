@@ -6,6 +6,9 @@ import { elements } from './view/htmlElements';
 const state = {};
 window.s = state;
 
+contracts.controlerView();
+elements.contractsBtn.forEach(el => el.addEventListener('click', contracts.controlerView));
+
 const controler = () => {
   let pay = contracts.getInput();
 
@@ -18,7 +21,7 @@ const controler = () => {
 
       case elements.contract.checked:
         
-        console.log('employment');
+        // console.log('employment');
         state.salary = new Salary(pay);
         state.salary.calcInsurance();
         contracts.renderEmployeeResult(state.salary);
@@ -26,11 +29,11 @@ const controler = () => {
         break;
       case elements.mandate.checked:
 
-        console.log('mandate');
+        // console.log('mandate');
         break;
       case elements.work.checked:
 
-        console.log('work');
+        // console.log('work');
       default:
         // console.log('some else');
     }
@@ -39,11 +42,6 @@ const controler = () => {
     console.log('wpisz kwotę wypłaty')
   }
 }
-
-
-
-contracts.controlerView();
-elements.agreements.forEach(el => el.addEventListener('click', contracts.controlerView))
 
 elements.calcBtn.addEventListener('click', controler);
 

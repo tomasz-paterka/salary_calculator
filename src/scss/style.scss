@@ -26,6 +26,26 @@ h4 {
   margin: 20px 0;
 }
 
+.btn {
+  background-color: #d3d3d3;
+  padding: 15px 30px;
+  color: #ffffff;
+  font-weight: bold;
+  border: none;
+  cursor: pointer;
+  font-size: 13px;
+  font-family: $main-font;
+  letter-spacing: 1px;
+}
+
+.active {
+  background-color: #5266FF;
+  &:hover {
+    transition: all 0.2s ease-in-out;
+    background-color: #507CFF;
+  }
+}
+
 .container {
   margin: 0 auto;
   padding: 0 15px;
@@ -41,30 +61,32 @@ h4 {
       width: 50%;
     }
   }
+}
 
-  .contract-type {
-    padding: 20px 0;
-    .contracts {
-      display: flex;
-      align-items: center;
-      label {
-        padding: 0 20px 0 5px;
-      }
+.contract-type {
+  padding: 20px 0;
+}
+
+.contracts {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+
+  .contracts_btn {
+    &:last-child {
+      margin-right: 0px;
     }
   }
 }
 
-.btn {
-  padding: 15px 30px;
-  background-color: #5266FF;
-  color: #ffffff;
-  font-weight: bold;
-  border: none;
-  cursor: pointer;
-  &:hover {
-    transition: all 0.2s ease-in-out;
-    background-color: #507CFF;
-  }
+.contracts_btn {
+  @extend .btn;
+  margin-right: 15px;
+}
+
+.result_btn {
+  @extend .btn;
+  @extend .active;
 }
 
 .result {
@@ -101,6 +123,7 @@ h4 {
 
 input[type="radio"] {
   visibility: hidden;
+  
 }
 
 /* RESPONSIVE STYLES */
