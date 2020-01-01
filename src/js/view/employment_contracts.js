@@ -27,3 +27,42 @@ export const renderEmployerResult = salary => {
   elements.employerResults.insertAdjacentHTML('beforeend', markup);
 }
 
+export const controlerView = () => {
+  let markup;
+  
+  switch (true) {
+    
+    case elements.contract.checked:
+     
+      console.log('employment');
+      markup = `
+        <div>
+          Szczegóły umowy
+        </div>
+      `;
+      elements.contractsDetail.insertAdjacentHTML('beforebegin', markup);
+      break;
+
+    case elements.mandate.checked:
+      markup = `
+        <div>
+          Szczegóły zlecenia
+        </div>
+      `;
+      elements.contractsDetail.insertAdjacentHTML('beforebegin', markup);
+      break;
+
+    case elements.work.checked:
+      markup = `
+        <div>
+          Szczegóły dzieła
+        </div>
+      `;
+      elements.contractsDetail.insertAdjacentHTML('beforebegin', markup);
+      break;
+    default:
+      // console.log('some else');
+  }
+}
+
+
