@@ -55,7 +55,7 @@ h4 {
 .salary-parameters {
   .salary {
     margin-top: 30px;
-    input {
+    input[name="salary"] {
       padding: 5px;
       text-align: end;
       width: 50%;
@@ -78,6 +78,37 @@ h4 {
     }
   }
 }
+
+.contract_details {
+  margin-top: 30px;
+  // display: flex;
+  // align-items: center;
+  .checkbox {
+    display: flex;
+    align-items: center;
+    font-family: $main-font;
+    margin-top: 15px;
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+    input[name="accidentIns"] {
+      margin-right: 5px;
+      width: 50px;
+      height: 30px;
+      text-align: center;
+    }
+  }
+}
+
+.employment_checkbox {
+  display: block;
+}
+
+.mandate_checkbox,
+.work_checkbox {
+  display: none;
+}
+
 
 .contracts_btn {
   @extend .btn;
@@ -122,7 +153,7 @@ h4 {
 }
 
 input[type="radio"] {
-  visibility: hidden;
+  display: none;
   
 }
 

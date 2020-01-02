@@ -23,6 +23,7 @@ const controler = () => {
         
         // console.log('employment');
         state.salary = new Salary(pay);
+        contracts.getAccidentInsInput();
         state.salary.calcInsurance();
         contracts.renderEmployeeResult(state.salary);
         contracts.renderEmployerResult(state.salary);
