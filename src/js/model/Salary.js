@@ -3,7 +3,9 @@ export default class Salary {
     this.payment = payment.toFixed(2);
   }
 
-  calcInsurance() {
+  calcInsurance(accidentInsPercentage) {
+    !accidentInsPercentage ? accidentInsPercentage = 1.67 : accidentInsPercentage = accidentInsPercentage;
+    
     this.employeeRetirementIns = ((this.payment * 9.76) / 100).toFixed(2);
     this.employerRetirementIns = ((this.payment * 9.76) / 100).toFixed(2);
     this.employeePensiontIns = ((this.payment * 1.50) / 100).toFixed(2);
@@ -11,6 +13,6 @@ export default class Salary {
     this.diseaseIns = ((this.payment * 2.45) / 100).toFixed(2);
     this.healthIns = ((this.payment * 9.00) / 100).toFixed(2);
     this.taxHealthIns = ((this.payment * 7.75) / 100).toFixed(2);
-    this.accidentIns = ((this.payment * 1.67) / 100).toFixed(2);
+    this.accidentIns = ((this.payment * accidentInsPercentage) / 100).toFixed(2);
   };
 };

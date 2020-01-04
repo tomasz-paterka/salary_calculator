@@ -10,7 +10,8 @@ export const elements = {
   agreements: document.querySelectorAll('input[type="radio"]'),
   contractsDetail: document.querySelector('.contract_details'),
   contractsBtn: document.querySelectorAll('.contracts_btn'),
-  accidentInsInput: document.getElementById('accidentInsEmp'),
+  accidentInsInputEmp: document.getElementById('accidentInsEmp'),
+  accidentInsInputMan: document.getElementById('accidentInsMan'),
   employment_checkbox: document.querySelector('.employment_checkbox'),
   mandate_checkbox: document.querySelector('.mandate_checkbox'),
   work_checkbox: document.querySelector('.work_checkbox')

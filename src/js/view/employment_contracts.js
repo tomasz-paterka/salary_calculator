@@ -1,7 +1,8 @@
 import { elements } from './htmlElements';
 
 export const getInput = () => parseInt(elements.salaryInput.value);
-export const getAccidentInsInput = () => console.dir(elements.accidentInsInput.value);
+export const getAccidentInsInputEmployment = () => elements.accidentInsInputEmp.value;
+export const getAccidentInsInputMandate = () => elements.accidentInsInputMan.value;
 
 export const controlerView = () => {
   switch (true) {

@@ -11,26 +11,31 @@ elements.contractsBtn.forEach(el => el.addEventListener('click', contracts.contr
 
 const controler = () => {
   let pay = contracts.getInput();
-  
+  let accidentInsPercentage;
+
   if (pay) {
     contracts.clearResults();
     contracts.clearEnterAmount();
     
     elements.resultContainer.style = 'visibility: visible';
-    
+
     switch (true) {
       
       case elements.contract.checked:
+        accidentInsPercentage = contracts.getAccidentInsInputEmployment();
+        accidentInsPercentage = accidentInsPercentage.replace(/,/g, '.');
+        console.log(accidentInsPercentage);
         
-        // console.log('employment');
         state.salary = new Salary(pay);
-        contracts.getAccidentInsInput();
-        state.salary.calcInsurance();
+        state.salary.calcInsurance(accidentInsPercentage);
+
         contracts.renderEmployeeResult(state.salary);
         contracts.renderEmployerResult(state.salary);
         break;
       case elements.mandate.checked:
-
+        accidentInsPercentage = contracts.getAccidentInsInputMandate();
+        accidentInsPercentage = accidentInsPercentage.replace(/,/g, '.');
+        console.log(accidentInsPercentage);
         // console.log('mandate');
         break;
       case elements.work.checked:
