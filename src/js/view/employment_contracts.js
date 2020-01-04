@@ -3,11 +3,6 @@ import { elements } from './htmlElements';
 export const getInput = () => parseInt(elements.salaryInput.value);
 export const getAccidentInsInput = () => console.dir(elements.accidentInsInput.value);
 
-// const clearContracts = () => {
-//   elements.contractsDetail.innerHTML = '';
-// };
-
-
 export const controlerView = () => {
   switch (true) {
     
@@ -75,6 +70,16 @@ export const renderEmployerResult = salary => {
   elements.employerResults.insertAdjacentHTML('beforeend', markup);
 }
 
+export const enterAmount = () => {
+  const markup = `
+    <p class="enter_amount">Proszę wpisać kwotę wypłaty</p>
+  `;
+  elements.salaryInput.insertAdjacentHTML('afterend', markup);
+};
 
-
-
+export const clearEnterAmount = () => {
+  const enterAmount = document.querySelector('.enter_amount');
+  if (enterAmount) {
+    enterAmount.parentElement.removeChild(enterAmount)
+  }
+};

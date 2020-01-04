@@ -11,14 +11,15 @@ elements.contractsBtn.forEach(el => el.addEventListener('click', contracts.contr
 
 const controler = () => {
   let pay = contracts.getInput();
-
-
+  
   if (pay) {
     contracts.clearResults();
+    contracts.clearEnterAmount();
+    
     elements.resultContainer.style = 'visibility: visible';
-
+    
     switch (true) {
-
+      
       case elements.contract.checked:
         
         // console.log('employment');
@@ -38,10 +39,14 @@ const controler = () => {
       default:
         // console.log('some else');
     }
+    
 
   } else if (!pay) {
-    console.log('wpisz kwotę wypłaty')
-  }
+    const enterAmount = document.querySelector('.enter_amount');
+    if (!enterAmount) {
+      contracts.enterAmount();
+    }
+  } 
 }
 
 elements.calcBtn.addEventListener('click', controler);
