@@ -1,6 +1,6 @@
 import { elements } from './htmlElements';
 
-export const getInput = () => parseInt(elements.salaryInput.value);
+export const getInput = () => parseFloat(elements.salaryInput.value);
 export const getAccidentInsInputEmployment = () => elements.accidentInsInputEmp.value;
 export const getAccidentInsInputMandate = () => elements.accidentInsInputMan.value;
 
@@ -50,23 +50,25 @@ export const clearResults = () => {
   elements.employerResults.innerHTML = '';
 };
 
+
 export const renderEmployeeResult = salary => {
   const markup = `
-    <li>Brutto: ${salary.payment}</li>
-    <li>Składka emerytalna: ${salary.employeeRetirementIns}</li>
-    <li>Składka rentowa: ${salary.employeePensiontIns}</li>
-    <li>Składka chorobowa: ${salary.diseaseIns}</li>
-    <li>Składka zdrowotna: ${salary.healthIns}</li>
+    <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Składka rentowa: ${salary.employeePensiontIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
   `;
   elements.employeeResults.insertAdjacentHTML('beforeend', markup);
 }
 
 export const renderEmployerResult = salary => {
   const markup = `
-    <li>Brutto: ${salary.payment}</li>
-    <li>Składka emerytalna: ${salary.employerRetirementIns}</li>
-    <li>Składka rentowa: ${salary.employerPensiontIns}</li>
-    <li>Składka wypadkowa: ${salary.accidentIns}</li>
+    <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Składka emerytalna: ${salary.employerRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Składka rentowa: ${salary.employerPensiontIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Składka wypadkowa: ${salary.accidentIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
   `;
   elements.employerResults.insertAdjacentHTML('beforeend', markup);
 }

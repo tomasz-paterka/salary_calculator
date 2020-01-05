@@ -24,10 +24,10 @@ const controler = () => {
       case elements.contract.checked:
         accidentInsPercentage = contracts.getAccidentInsInputEmployment();
         accidentInsPercentage = accidentInsPercentage.replace(/,/g, '.');
-        console.log(accidentInsPercentage);
-        
+
         state.salary = new Salary(pay);
         state.salary.calcInsurance(accidentInsPercentage);
+        state.salary.calcTax();
 
         contracts.renderEmployeeResult(state.salary);
         contracts.renderEmployerResult(state.salary);
@@ -35,7 +35,7 @@ const controler = () => {
       case elements.mandate.checked:
         accidentInsPercentage = contracts.getAccidentInsInputMandate();
         accidentInsPercentage = accidentInsPercentage.replace(/,/g, '.');
-        console.log(accidentInsPercentage);
+        // console.log(accidentInsPercentage);
         // console.log('mandate');
         break;
       case elements.work.checked:
