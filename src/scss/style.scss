@@ -145,19 +145,29 @@ h4 {
         border-bottom: 1px solid #000;
         padding: 10px 0 10px 5px;
       }
-
-      li {
-        padding: 2.5px 0;
-        &:last-child {
-          color: #008000;
-        }
-      }
     }
     
     .employee-list,
     .employer-list {
       list-style: none;
       padding-left: 5px;
+      li {
+        padding: 2.5px 0;
+        &:first-child,
+        &:last-child {
+          color: #000;
+        }
+      }
+    }
+    .employee-list {
+      li {
+        color: #ff0000;
+      }
+    }
+    .employer-list {
+      li {
+        color:  #008000;
+      }
     }
   }
 }
