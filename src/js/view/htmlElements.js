@@ -16,6 +16,7 @@ export const elements = {
   mandate_checkbox: document.querySelector('.mandate_checkbox'),
   work_checkbox: document.querySelector('.work_checkbox'),
   ageInputEmp: document.getElementById('ageEmp'),
-  stationaryJob: document.getElementById('stationaryJob')
+  stationaryJob: document.getElementById('stationaryJob'),
+  freeAmount: document.getElementById('freeAmount')
 };
 

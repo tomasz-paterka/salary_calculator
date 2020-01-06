@@ -1,6 +1,6 @@
 import { elements } from './htmlElements';
 
-export const getInput = () => parseFloat(elements.salaryInput.value);
+export const getInput = () => parseFloat(elements.salaryInput.value.replace(',', '.'));
 export const getAccidentInsInputEmployment = () => elements.accidentInsInputEmp.value;
 export const getAccidentInsInputMandate = () => elements.accidentInsInputMan.value;
 

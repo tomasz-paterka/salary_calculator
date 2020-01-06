@@ -20,11 +20,12 @@ export default class Salary {
   };
 
   calcTax() {
-    let costGettingIncome;
-    elements.stationaryJob.checked ? costGettingIncome = 250.00 : costGettingIncome = 300.00
+    let costGettingIncome, taxFreeAmount;
+    elements.stationaryJob.checked ? costGettingIncome = 250.00 : costGettingIncome = 300.00;
+    elements.freeAmount.checked ? taxFreeAmount = 43.76 : taxFreeAmount = 0;
     
     const taxBase = Math.round((this.payment - (this.employeeRetirementIns + this.employeePensiontIns + this.diseaseIns)) - costGettingIncome);
-    this.PIT = Math.round(((taxBase * 0.17) - 43.76) - this.taxHealthIns);
+    this.PIT = Math.round(((taxBase * 0.17) - taxFreeAmount) - this.taxHealthIns);
   };
 
   calcNettoPayment() {
