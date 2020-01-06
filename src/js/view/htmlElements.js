@@ -14,6 +14,7 @@ export const elements = {
   accidentInsInputMan: document.getElementById('accidentInsMan'),
   employment_checkbox: document.querySelector('.employment_checkbox'),
   mandate_checkbox: document.querySelector('.mandate_checkbox'),
-  work_checkbox: document.querySelector('.work_checkbox')
+  work_checkbox: document.querySelector('.work_checkbox'),
+  ageInputEmp: document.getElementById('ageEmp')
 };
 

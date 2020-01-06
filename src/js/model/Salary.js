@@ -24,7 +24,11 @@ export default class Salary {
 
   calcNettoPayment() {
     this.netAmount = this.payment - this.socialIns - this.healthIns - this.PIT;
-    console.log(this.netAmount);
+  }
+
+  calcNettoPaymentUnderAge() {
+    this.netAmountUnderAge = this.payment - this.socialIns - this.healthIns;
+    console.log(this.netAmountUnderAge);
   }
 };
 

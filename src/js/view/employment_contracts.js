@@ -58,11 +58,22 @@ export const renderEmployeeResult = salary => {
     <li>Składka rentowa: ${salary.employeePensiontIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
     <li>Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
     <li>Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-    <li>Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-    <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
   `;
-  elements.employeeResults.insertAdjacentHTML('beforeend', markup);
-}
+  elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
+  
+  if (elements.ageInputEmp.checked) {
+    const markupAboveAge = `
+      <li>Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+      <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    `;
+    elements.employeeResults.insertAdjacentHTML('beforeend', markupAboveAge);
+  } else {
+    const markupUnderAge = `
+      <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    `;
+    elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
+  }
+};
 
 export const renderEmployerResult = salary => {
   const markup = `
@@ -72,7 +83,7 @@ export const renderEmployerResult = salary => {
     <li>Składka wypadkowa: ${salary.accidentIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
   `;
   elements.employerResults.insertAdjacentHTML('beforeend', markup);
-}
+};
 
 export const enterAmount = () => {
   const markup = `
