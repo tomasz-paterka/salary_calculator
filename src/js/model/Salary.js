@@ -20,7 +20,10 @@ export default class Salary {
   };
 
   calcTax() {
-    const taxBase = Math.round((this.payment - (this.employeeRetirementIns + this.employeePensiontIns + this.diseaseIns)) - 250.00);
+    let costGettingIncome;
+    elements.stationaryJob.checked ? costGettingIncome = 250.00 : costGettingIncome = 300.00
+    
+    const taxBase = Math.round((this.payment - (this.employeeRetirementIns + this.employeePensiontIns + this.diseaseIns)) - costGettingIncome);
     this.PIT = Math.round(((taxBase * 0.17) - 43.76) - this.taxHealthIns);
   };
 
