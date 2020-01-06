@@ -1,3 +1,5 @@
+import { elements } from '../view/htmlElements';
+
 export default class Salary {
   constructor(payment) {
     this.payment = payment
@@ -20,17 +22,16 @@ export default class Salary {
   calcTax() {
     const taxBase = Math.round((this.payment - (this.employeeRetirementIns + this.employeePensiontIns + this.diseaseIns)) - 250.00);
     this.PIT = Math.round(((taxBase * 0.17) - 43.76) - this.taxHealthIns);
-  }
+  };
 
   calcNettoPayment() {
-    this.netAmount = this.payment - this.socialIns - this.healthIns - this.PIT;
-  }
-
-  calcNettoPaymentUnderAge() {
-    this.netAmountUnderAge = this.payment - this.socialIns - this.healthIns;
-    console.log(this.netAmountUnderAge);
+    if (elements.ageInputEmp.checked) {
+      this.calcTax();
+      this.netAmount = this.payment - this.socialIns - this.healthIns - this.PIT;
+    } else {
+      this.netAmountUnderAge = this.payment - this.socialIns - this.healthIns;
+    }
   }
 };
 
 // kwota wolna 43,76 m-c, cała 525,12
-

@@ -27,14 +27,8 @@ const controler = () => {
 
         state.salary = new Salary(pay);
         state.salary.calcInsurance(accidentInsPercentage);
+        state.salary.calcNettoPayment();
 
-        if (elements.ageInputEmp.checked) {
-          state.salary.calcTax();
-          state.salary.calcNettoPayment();
-        } else {
-          state.salary.calcNettoPaymentUnderAge();
-        } 
-        
         contracts.renderEmployeeResult(state.salary);
         contracts.renderEmployerResult(state.salary);
         
