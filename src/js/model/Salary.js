@@ -11,19 +11,20 @@ export default class Salary {
     this.employeePensiontIns = ((this.payment * 1.50) / 100);
     this.employerPensiontIns = ((this.payment * 6.50) / 100);
     this.diseaseIns = ((this.payment * 2.45) / 100);
-    
-    let socialIns = this.employeeRetirementIns + this.employeePensiontIns + this.diseaseIns;
-
-    this.healthIns = (((this.payment - socialIns ) * 9.00) / 100);
-    this.taxHealthIns = (((this.payment - socialIns ) * 7.75) / 100);
+    this.socialIns = this.employeeRetirementIns + this.employeePensiontIns + this.diseaseIns;
+    this.healthIns = (((this.payment - this.socialIns ) * 9.00) / 100);
+    this.taxHealthIns = (((this.payment - this.socialIns ) * 7.75) / 100);
     this.accidentIns = ((this.payment * accidentInsPercentage) / 100);
   };
 
   calcTax() {
     const taxBase = Math.round((this.payment - (this.employeeRetirementIns + this.employeePensiontIns + this.diseaseIns)) - 250.00);
-    console.log(taxBase);
     this.PIT = Math.round(((taxBase * 0.17) - 43.76) - this.taxHealthIns);
-    console.log(this.PIT);
+  }
+
+  calcNettoPayment() {
+    this.netAmount = this.payment - this.socialIns - this.healthIns - this.PIT;
+    console.log(this.netAmount);
   }
 };
 

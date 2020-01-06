@@ -28,6 +28,7 @@ const controler = () => {
         state.salary = new Salary(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcTax();
+        state.salary.calcNettoPayment();
 
         contracts.renderEmployeeResult(state.salary);
         contracts.renderEmployerResult(state.salary);

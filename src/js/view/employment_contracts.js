@@ -59,6 +59,7 @@ export const renderEmployeeResult = salary => {
     <li>Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
     <li>Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
     <li>Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+    <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
   `;
   elements.employeeResults.insertAdjacentHTML('beforeend', markup);
 }
