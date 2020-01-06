@@ -148,6 +148,9 @@ h4 {
 
       li {
         padding: 2.5px 0;
+        &:last-child {
+          color: #008000;
+        }
       }
     }
     
@@ -161,7 +164,6 @@ h4 {
 
 input[type="radio"] {
   display: none;
-  
 }
 
 /* RESPONSIVE STYLES */
