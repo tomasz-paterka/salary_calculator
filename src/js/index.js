@@ -2,6 +2,7 @@ import '../scss/style.scss';
 import * as employmentContractView from './view/employmentContractView';
 import * as mandateContractView from './view/mandateContractView';
 import EmploymentContract from './model/EmploymentContract';
+import MandateContract from './model/MandateContract';
 import { elements, getInput, controlerView, enterAmount, clearEnterAmount, clearResults } from './view/baseView';
 
 const state = {};
@@ -37,6 +38,10 @@ const controler = () => {
       case elements.mandateContract.checked:
         accidentInsPercentage = mandateContractView.getAccidentInsInputMandate();
         accidentInsPercentage = accidentInsPercentage.replace(/,/g, '.');
+        
+        state.salary = new MandateContract(pay);
+        state.salary.calcInsurance(accidentInsPercentage);
+        console.log(state.salary);
         // console.log(accidentInsPercentage);
         // console.log('mandate');
         break;
