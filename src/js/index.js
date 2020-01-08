@@ -1,45 +1,47 @@
 import '../scss/style.scss';
-import * as contracts from './view/employment_contracts';
-import Salary from './model/Salary';
-import { elements } from './view/htmlElements';
+import * as employmentContractView from './view/employmentContractView';
+import * as mandateContractView from './view/mandateContractView';
+import EmploymentContract from './model/EmploymentContract';
+import { elements, getInput, controlerView, enterAmount, clearEnterAmount, clearResults } from './view/baseView';
 
 const state = {};
 window.s = state;
 
-contracts.controlerView();
-elements.contractsBtn.forEach(el => el.addEventListener('click', contracts.controlerView));
+controlerView();
+elements.contractsBtn.forEach(el => el.addEventListener('click', controlerView));
 
 const controler = () => {
-  let pay = contracts.getInput();
+  let pay = getInput();
   let accidentInsPercentage;
 
   if (pay) {
-    contracts.clearResults();
-    contracts.clearEnterAmount();
+    clearResults();
+    clearEnterAmount();
     
     elements.resultContainer.style = 'visibility: visible';
 
     switch (true) {
       
-      case elements.contract.checked:
-        accidentInsPercentage = contracts.getAccidentInsInputEmployment();
+      case elements.employmentContract.checked:
+        accidentInsPercentage = employmentContractView.getAccidentInsInputEmployment();
         accidentInsPercentage = accidentInsPercentage.replace(/,/g, '.');
 
-        state.salary = new Salary(pay);
+        state.salary = new EmploymentContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
 
-        contracts.renderEmployeeResult(state.salary);
-        contracts.renderEmployerResult(state.salary);
-        
+        employmentContractView.renderEmployeeResult(state.salary);
+        employmentContractView.renderEmployerResult(state.salary);
         break;
-      case elements.mandate.checked:
-        accidentInsPercentage = contracts.getAccidentInsInputMandate();
+
+      case elements.mandateContract.checked:
+        accidentInsPercentage = mandateContractView.getAccidentInsInputMandate();
         accidentInsPercentage = accidentInsPercentage.replace(/,/g, '.');
         // console.log(accidentInsPercentage);
         // console.log('mandate');
         break;
-      case elements.work.checked:
+
+      case elements.workContract.checked:
 
         // console.log('work');
       default:
@@ -48,9 +50,9 @@ const controler = () => {
     
 
   } else if (!pay) {
-    const enterAmount = document.querySelector('.enter_amount');
-    if (!enterAmount) {
-      contracts.enterAmount();
+    const enterAmountTag = document.querySelector('.enter_amount');
+    if (!enterAmountTag) {
+      enterAmount();
     }
   } 
 }

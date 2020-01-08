@@ -1,6 +1,6 @@
-import { elements } from '../view/htmlElements';
+import { elements } from '../view/baseView';
 
-export default class Salary {
+export default class EmploymentContract {
   constructor(payment) {
     this.payment = payment
   }
