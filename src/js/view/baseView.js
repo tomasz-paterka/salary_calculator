@@ -21,6 +21,7 @@ export const elements = {
   // Mandate Contract elements
   mandateContract: document.getElementById('mandate_contract'),
   accidentInsInputMan: document.getElementById('accidentInsMan'),
+  ageInputMan: document.getElementById('ageMan'),
   socialIns: document.getElementById('socialIns'),
   diseaseIns: document.getElementById('diseaseIns'),
 

@@ -12,7 +12,7 @@ controlerView();
 elements.contractsBtn.forEach(el => el.addEventListener('click', controlerView));
 
 const controler = () => {
-  let pay = getInput();
+  const pay = getInput();
   let accidentInsPercentage;
 
   if (pay) {
@@ -41,6 +41,7 @@ const controler = () => {
         
         state.salary = new MandateContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
+        state.salary.calcNettoPayment();
         console.log(state.salary);
         // console.log(accidentInsPercentage);
         // console.log('mandate');

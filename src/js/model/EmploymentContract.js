@@ -20,16 +20,16 @@ export default class EmploymentContract {
     this.payment >= 2600.00 ? this.laborFund = ((this.payment * 2.45) / 100) : this.laborFund = 0;
     this.contributionFGSP = ((this.payment * 0.10) / 100);
     this.employerCosts = this.payment + this.employerRetirementIns + this.employerPensionIns + this.accidentIns + this.laborFund + this.contributionFGSP;
-  };
+  }
 
   calcTax() {
     let costGettingIncome, taxFreeAmount;
     elements.stationaryJob.checked ? costGettingIncome = 250.00 : costGettingIncome = 300.00;
     elements.freeAmount.checked ? taxFreeAmount = 43.76 : taxFreeAmount = 0;
     
-    const taxBase = Math.round((this.payment - (this.employeeRetirementIns + this.employeePensionIns + this.diseaseIns)) - costGettingIncome);
+    const taxBase = Math.round((this.payment - this.socialIns) - costGettingIncome);
     this.PIT = Math.round(((taxBase * 0.17) - taxFreeAmount) - this.taxHealthIns);
-  };
+  }
 
   calcNettoPayment() {
     if (elements.ageInputEmp.checked) {
@@ -39,4 +39,4 @@ export default class EmploymentContract {
       this.netAmountUnderAge = this.payment - this.socialIns - this.healthIns;
     }
   }
-};
+}
