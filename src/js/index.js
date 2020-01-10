@@ -43,8 +43,8 @@ const controler = () => {
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
         console.log(state.salary);
-        // console.log(accidentInsPercentage);
-        // console.log('mandate');
+
+        mandateContractView.renderEmployeeResult(state.salary);
         break;
 
       case elements.workContract.checked:

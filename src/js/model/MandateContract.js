@@ -8,7 +8,7 @@ export default class MandateContract {
   calcInsurance(accidentInsPercentage) {
     !accidentInsPercentage ? accidentInsPercentage = 1.67 : accidentInsPercentage = accidentInsPercentage;
 
-    if (elements.socialIns.checked) {
+    if (elements.socialInsCheck.checked) {
       this.employeeRetirementIns = ((this.payment * 9.76) / 100);
       this.employerRetirementIns = ((this.payment * 9.76) / 100);
       this.employeePensionIns = ((this.payment * 1.50) / 100);
@@ -20,7 +20,7 @@ export default class MandateContract {
       this.contributionFGSP = ((this.payment * 0.10) / 100);
     }
 
-    if (elements.diseaseIns.checked) {
+    if (elements.diseaseInsCheck.checked) {
       this.diseaseIns = ((this.payment * 2.45) / 100);
       this.socialIns = this.employeeRetirementIns + this.employeePensionIns + this.diseaseIns;
     }
