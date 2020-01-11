@@ -22,15 +22,23 @@ export default class MandateContract {
 
     if (elements.diseaseInsCheck.checked) {
       this.diseaseIns = ((this.payment * 2.45) / 100);
-      this.socialIns = this.employeeRetirementIns + this.employeePensionIns + this.diseaseIns;
+      this.socialIns += this.diseaseIns;
     }
 
-    if (!this.socialIns) {
-      this.healthIns = ((this.payment * 9.00) / 100);
-      this.taxHealthIns = ((this.payment * 7.75) / 100);
+    if (elements.healthInsCheck.checked) {
+      if (!this.socialIns && this.diseaseIns) {
+        this.healthIns = (((this.payment - this.diseaseIns) * 9.00) / 100);
+        this.taxHealthIns = (((this.payment - this.diseaseIns) * 7.75) / 100);
+      } else if (!this.socialIns && !this.diseaseIns)  {
+        this.healthIns = ((this.payment * 9.00) / 100);
+        this.taxHealthIns = ((this.payment * 7.75) / 100);
+      } else {
+        this.healthIns = (((this.payment - this.socialIns ) * 9.00) / 100);
+        this.taxHealthIns = (((this.payment - this.socialIns ) * 7.75) / 100);
+      }
     } else {
-      this.healthIns = (((this.payment - this.socialIns ) * 9.00) / 100);
-      this.taxHealthIns = (((this.payment - this.socialIns ) * 7.75) / 100);
+      this.healthIns = 0;
+      this.taxHealthIns = 0;
     }
 
     if (!this.socialInsEmployer) {
@@ -43,22 +51,45 @@ export default class MandateContract {
   calcTax() {
     let costGettingIncome;
     let taxBase;
-    if (!this.socialIns) {
-      costGettingIncome = Math.round(this.payment * 0.2);
-      taxBase = Math.round(this.payment - costGettingIncome);
-    } else {
+    if (!this.socialIns && this.diseaseIns) {
+      costGettingIncome = Math.round((this.payment - this.diseaseIns) * 0.2);
+      taxBase = Math.round((this.payment - this.diseaseIns) - costGettingIncome);
+    } 
+    else if ((this.socialIns && !this.diseaseIns) || (this.socialIns && this.diseaseIns && !this.healthIns) || (this.socialIns && this.diseaseIns && this.healthIns)) {
       costGettingIncome = Math.round((this.payment - this.socialIns) * 0.2);
       taxBase = Math.round((this.payment - this.socialIns) - costGettingIncome);
+    } 
+    else {
+      costGettingIncome = Math.round(this.payment * 0.2);
+      taxBase = Math.round(this.payment - costGettingIncome);
     }
+    console.log(costGettingIncome);
+    console.log(taxBase);
     this.PIT = Math.round((taxBase * 0.17) - this.taxHealthIns);
   }
 
   calcNettoPayment() {
     if (elements.ageInputMan.checked) {
       this.calcTax();
-      !this.socialIns ? this.netAmount = this.payment - this.healthIns - this.PIT : this.netAmount = this.payment - this.socialIns - this.healthIns - this.PIT;
+      if (!this.socialIns && this.diseaseIns) {
+        this.netAmount = this.payment - this.diseaseIns - this.healthIns - this.PIT;
+      } else if (!this.socialIns && !this.diseaseIns) {
+        this.netAmount = this.payment - this.healthIns - this.PIT;
+      } else if (!this.socialIns && !this.diseaseIns && !this.healthIns) {
+        this.netAmount = this.payment - this.PIT;
+      } else {
+        this.netAmount = this.payment - this.socialIns - this.healthIns - this.PIT;
+      }
     } else {
-      !this.socialIns ? this.netAmountUnderAge = this.payment - this.healthIns : this.netAmountUnderAge = this.payment - this.socialIns - this.healthIns;
+      if (!this.socialIns && this.diseaseIns) {
+        this.netAmountUnderAge = this.payment - this.diseaseIns - this.healthIns;
+      } else if (!this.socialIns && !this.diseaseIns) {
+        this.netAmountUnderAge = this.payment - this.healthIns;
+      } else if (!this.socialIns && !this.diseaseIns && !this.healthIns) {
+        this.netAmountUnderAge = this.payment;
+      } else {
+        this.netAmountUnderAge = this.payment - this.socialIns - this.healthIns;
+      }
     }
   }
 }

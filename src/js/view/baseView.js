@@ -24,6 +24,7 @@ export const elements = {
   ageInputMan: document.getElementById('ageMan'),
   socialInsCheck: document.getElementById('socialIns'),
   diseaseInsCheck: document.getElementById('diseaseIns'),
+  healthInsCheck: document.getElementById('healthIns'),
 
   // Work Contract elements
   workContract: document.getElementById('work_contract'),
