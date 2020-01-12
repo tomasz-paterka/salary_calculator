@@ -22,7 +22,7 @@ export default class MandateContract {
 
     if (elements.diseaseInsCheck.checked) {
       this.diseaseIns = ((this.payment * 2.45) / 100);
-      this.socialIns += this.diseaseIns;
+      !this.socialIns ? this.socialIns = 0 : this.socialIns += this.diseaseIns;
     }
 
     if (elements.healthInsCheck.checked) {
