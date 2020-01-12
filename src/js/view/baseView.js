@@ -10,6 +10,8 @@ export const elements = {
   employment_checkbox: document.querySelector('.employment_checkbox'),
   mandate_checkbox: document.querySelector('.mandate_checkbox'),
   work_checkbox: document.querySelector('.work_checkbox'),
+  employee_header: document.querySelector('.employee_header'),
+  employer_header: document.querySelector('.employer_header'),
 
   // Employment Contract elements
   employmentContract: document.getElementById('employment_contract'),
@@ -87,4 +89,6 @@ export const clearEnterAmount = () => {
 export const clearResults = () => {
   elements.employeeResults.innerHTML = '';
   elements.employerResults.innerHTML = '';
+  elements.employee_header.innerHTML = '';
+  elements.employer_header.innerHTML = '';
 };

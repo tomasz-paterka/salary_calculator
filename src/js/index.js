@@ -45,6 +45,7 @@ const controler = () => {
         console.log(state.salary);
 
         mandateContractView.renderEmployeeResult(state.salary);
+        mandateContractView.renderEmployerResult(state.salary);
         break;
 
       case elements.workContract.checked:

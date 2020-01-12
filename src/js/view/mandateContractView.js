@@ -1,12 +1,16 @@
 import {
-  elements
+  elements,
 } from './baseView';
 
 export const getAccidentInsInputMandate = () => elements.accidentInsInputMan.value;
 
 export const renderEmployeeResult = salary => {
-  let markup;
-  let markupUnderAge;
+  const headerMarkup = `
+    <p>Zleceniobiorca</p>
+  `;
+  elements.employee_header.insertAdjacentHTML('afterbegin', headerMarkup);
+
+  let markup, markupUnderAge;
 
   switch (true) {
 /* Cases above 26 year old */
@@ -205,6 +209,11 @@ export const renderEmployeeResult = salary => {
 };
 
 export const renderEmployerResult = salary => {
+  const headerMarkup = `
+    <p>Zleceniodawca</p>
+  `;
+  elements.employer_header.insertAdjacentHTML('afterbegin', headerMarkup);
+  
   const markup = `
     <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
     <li>(+)Składka emerytalna: ${salary.employerRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>

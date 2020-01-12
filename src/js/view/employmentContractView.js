@@ -3,6 +3,11 @@ import { elements } from './baseView';
 export const getAccidentInsInputEmployment = () => elements.accidentInsInputEmp.value;
 
 export const renderEmployeeResult = salary => {
+  const headerMarkup = `
+    <p>Pracownik</p>
+  `;
+  elements.employee_header.insertAdjacentHTML('afterbegin', headerMarkup);
+
   const markup = `
     <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
     <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
@@ -27,6 +32,11 @@ export const renderEmployeeResult = salary => {
 };
 
 export const renderEmployerResult = salary => {
+  const headerMarkup = `
+    <p>Pracodawca</p>
+  `;
+  elements.employer_header.insertAdjacentHTML('afterbegin', headerMarkup);
+
   const markup = `
     <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
     <li>(+)Składka emerytalna: ${salary.employerRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
