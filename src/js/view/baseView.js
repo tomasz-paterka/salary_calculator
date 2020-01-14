@@ -27,6 +27,8 @@ export const elements = {
   socialInsCheck: document.getElementById('socialIns'),
   diseaseInsCheck: document.getElementById('diseaseIns'),
   healthInsCheck: document.getElementById('healthIns'),
+  mandateContractCosts20: document.getElementById('mandate_contract_20'),
+  mandateContractCosts50: document.getElementById('mandate_contract_50'),
 
   // Work Contract elements
   workContract: document.getElementById('work_contract'),
@@ -68,7 +70,6 @@ export const controlerView = () => {
       break;
 
     default:
-      // console.log('some else');
   }
 }
 

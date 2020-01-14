@@ -49,18 +49,24 @@ export default class MandateContract {
   }
 
   calcTax() {
-    let costGettingIncome;
-    let taxBase;
+    let costGettingIncome, costGettingIncomePercentage, taxBase;
+
+    if (elements.mandateContractCosts20.checked) {
+      costGettingIncomePercentage = 0.2;
+    } else if (elements.mandateContractCosts50.checked) {
+      costGettingIncomePercentage = 0.5;
+    }
+    
     if (!this.socialIns && this.diseaseIns) {
-      costGettingIncome = Math.round((this.payment - this.diseaseIns) * 0.2);
+      costGettingIncome = Math.round((this.payment - this.diseaseIns) * costGettingIncomePercentage);
       taxBase = Math.round((this.payment - this.diseaseIns) - costGettingIncome);
     } 
     else if ((this.socialIns && !this.diseaseIns) || (this.socialIns && this.diseaseIns && !this.healthIns) || (this.socialIns && this.diseaseIns && this.healthIns)) {
-      costGettingIncome = Math.round((this.payment - this.socialIns) * 0.2);
+      costGettingIncome = Math.round((this.payment - this.socialIns) * costGettingIncomePercentage);
       taxBase = Math.round((this.payment - this.socialIns) - costGettingIncome);
     } 
     else {
-      costGettingIncome = Math.round(this.payment * 0.2);
+      costGettingIncome = Math.round(this.payment * costGettingIncomePercentage);
       taxBase = Math.round(this.payment - costGettingIncome);
     }
     console.log(costGettingIncome);
