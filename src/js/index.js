@@ -3,6 +3,7 @@ import * as employmentContractView from './view/employmentContractView';
 import * as mandateContractView from './view/mandateContractView';
 import EmploymentContract from './model/EmploymentContract';
 import MandateContract from './model/MandateContract';
+import WorkContract from './model/WorkContract';
 import { elements, getInput, controlerView, enterAmount, clearEnterAmount, clearResults } from './view/baseView';
 
 const state = {};
@@ -49,10 +50,10 @@ const controler = () => {
         break;
 
       case elements.workContract.checked:
-
-        // console.log('work');
+        state.salary = new WorkContract(pay);
+        state.salary.calcNettoPayment();
+        console.log(state.salary);
       default:
-        // console.log('some else');
     }
     
 

@@ -24,10 +24,18 @@ export default class EmploymentContract {
 
   calcTax() {
     let costGettingIncome, taxFreeAmount;
+    // let taxBase
     elements.stationaryJob.checked ? costGettingIncome = 250.00 : costGettingIncome = 300.00;
     elements.freeAmount.checked ? taxFreeAmount = 43.76 : taxFreeAmount = 0;
     
     const taxBase = Math.round((this.payment - this.socialIns) - costGettingIncome);
+    // console.log(taxBase);
+    // if (taxBase > 85528) {
+    //   console.log('big tax')
+    // } else if (taxBase <= 85528) {
+    //   console.log('small tax')
+    // }
+
     this.PIT = Math.round(((taxBase * 0.17) - taxFreeAmount) - this.taxHealthIns);
   }
 

@@ -118,12 +118,14 @@ input[type="radio"] {
   display: none;
 }
 
-.mandate_contract_costs {
+.mandate_contract_costs,
+.work_contract_costs {
   margin-top: 20px;
   p {
     margin-bottom: 10px;
   }
-  .mandate_contract_costs_label {
+  .mandate_contract_costs_label,
+  .work_contract_costs_label {
     margin-right: 15px;
     display: inline-flex;
     align-items: center;

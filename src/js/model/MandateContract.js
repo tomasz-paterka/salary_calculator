@@ -69,8 +69,7 @@ export default class MandateContract {
       costGettingIncome = Math.round(this.payment * costGettingIncomePercentage);
       taxBase = Math.round(this.payment - costGettingIncome);
     }
-    console.log(costGettingIncome);
-    console.log(taxBase);
+
     this.PIT = Math.round((taxBase * 0.17) - this.taxHealthIns);
   }
 

@@ -32,6 +32,10 @@ export const elements = {
 
   // Work Contract elements
   workContract: document.getElementById('work_contract'),
+  ageInputWork: document.getElementById('ageWork'),
+  flatTax: document.getElementById('flatTax'),
+  workContractCosts20: document.getElementById('work_contract_20'),
+  workContractCosts50: document.getElementById('work_contract_50'),
 };
 
 export const getInput = () => parseFloat(elements.salaryInput.value.replace(',', '.'));
