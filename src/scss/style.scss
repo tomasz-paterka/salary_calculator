@@ -130,7 +130,8 @@ input[type="radio"] {
     display: inline-flex;
     align-items: center;
   }
-  input[name="contract_costs"] {
+  input[name="mandate_costs"],
+  input[name="work_costs"] {
     display: inline-block;
     margin-right: 5px;
   }

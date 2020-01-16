@@ -2,7 +2,8 @@ import { elements } from '../view/baseView';
 
 export default class WorkContract {
   constructor(payment) {
-    this.payment = payment
+    this.payment = payment;
+    this.employerCosts = this.payment;
   }
 
   calcTax() {
@@ -20,8 +21,7 @@ export default class WorkContract {
     } else {
       taxBase = Math.round(this.payment);
     }
-    console.log(costGettingIncome);
-    console.log(taxBase);
+
     this.PIT = Math.round(taxBase * 0.17);
   }
 

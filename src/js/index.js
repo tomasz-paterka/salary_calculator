@@ -1,6 +1,7 @@
 import '../scss/style.scss';
 import * as employmentContractView from './view/employmentContractView';
 import * as mandateContractView from './view/mandateContractView';
+import * as workContractView from './view/workContractView';
 import EmploymentContract from './model/EmploymentContract';
 import MandateContract from './model/MandateContract';
 import WorkContract from './model/WorkContract';
@@ -43,7 +44,6 @@ const controler = () => {
         state.salary = new MandateContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
-        console.log(state.salary);
 
         mandateContractView.renderEmployeeResult(state.salary);
         mandateContractView.renderEmployerResult(state.salary);
@@ -52,7 +52,10 @@ const controler = () => {
       case elements.workContract.checked:
         state.salary = new WorkContract(pay);
         state.salary.calcNettoPayment();
-        console.log(state.salary);
+
+        workContractView.renderEmployeeResult(state.salary);
+        workContractView.renderEmployerResult(state.salary);
+        
       default:
     }
     
