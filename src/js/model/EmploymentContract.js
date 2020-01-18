@@ -7,6 +7,7 @@ export default class EmploymentContract {
 
   calcInsurance(accidentInsPercentage) {
     !accidentInsPercentage ? accidentInsPercentage = 1.67 : accidentInsPercentage = accidentInsPercentage;
+    this.minimumSalary = 2600.00;
 
     this.employeeRetirementIns = ((this.payment * 9.76) / 100);
     this.employerRetirementIns = ((this.payment * 9.76) / 100);
@@ -17,7 +18,7 @@ export default class EmploymentContract {
     this.healthIns = (((this.payment - this.socialIns ) * 9.00) / 100);
     this.taxHealthIns = (((this.payment - this.socialIns ) * 7.75) / 100);
     this.accidentIns = ((this.payment * accidentInsPercentage) / 100);
-    this.payment >= 2600.00 ? this.laborFund = ((this.payment * 2.45) / 100) : this.laborFund = 0;
+    this.payment >= this.minimumSalary ? this.laborFund = ((this.payment * 2.45) / 100) : this.laborFund = 0;
     this.contributionFGSP = ((this.payment * 0.10) / 100);
     this.employerCosts = this.payment + this.employerRetirementIns + this.employerPensionIns + this.accidentIns + this.laborFund + this.contributionFGSP;
   }

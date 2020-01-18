@@ -12,6 +12,7 @@ export const elements = {
   work_checkbox: document.querySelector('.work_checkbox'),
   employee_header: document.querySelector('.employee_header'),
   employer_header: document.querySelector('.employer_header'),
+  result_info: document.querySelector('.result_info'),
 
   // Employment Contract elements
   employmentContract: document.getElementById('employment_contract'),
@@ -84,6 +85,15 @@ export const enterAmount = () => {
   elements.salaryInput.insertAdjacentHTML('afterend', markup);
 };
 
+export const laborFundInfo = (obj) =>  {
+  if (obj.laborFund === 0) {
+    const laborFundMarkup = `
+      <p>Poniżej kwoty minimalnego wynagrodzenia, które wynosi ${obj.minimumSalary.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')} zł <br> w roku 2020, nie liczymy składki na Fundusz Pracy.</p>
+    `;
+    elements.result_info.insertAdjacentHTML('afterbegin', laborFundMarkup);
+  }
+};
+
 export const clearEnterAmount = () => {
   const enterAmountTag = document.querySelector('.enter_amount');
   if (enterAmountTag) {
@@ -96,4 +106,5 @@ export const clearResults = () => {
   elements.employerResults.innerHTML = '';
   elements.employee_header.innerHTML = '';
   elements.employer_header.innerHTML = '';
+  elements.result_info.innerHTML = '';
 };

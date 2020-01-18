@@ -7,6 +7,7 @@ export default class MandateContract {
 
   calcInsurance(accidentInsPercentage) {
     !accidentInsPercentage ? accidentInsPercentage = 1.67 : accidentInsPercentage = accidentInsPercentage;
+    this.minimumSalary = 2600.00;
 
     if (elements.socialInsCheck.checked) {
       this.employeeRetirementIns = ((this.payment * 9.76) / 100);
@@ -16,7 +17,7 @@ export default class MandateContract {
       this.accidentIns = ((this.payment * accidentInsPercentage) / 100);
       this.socialIns = this.employeeRetirementIns + this.employeePensionIns;
       this.socialInsEmployer = this.employerRetirementIns + this.employerPensionIns;
-      this.payment >= 2600.00 ? this.laborFund = ((this.payment * 2.45) / 100) : this.laborFund = 0;
+      this.payment >= this.minimumSalary ? this.laborFund = ((this.payment * 2.45) / 100) : this.laborFund = 0;
       this.contributionFGSP = ((this.payment * 0.10) / 100);
     }
 

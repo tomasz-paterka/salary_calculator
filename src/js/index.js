@@ -32,7 +32,7 @@ const controler = () => {
         state.salary = new EmploymentContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
-
+        console.log(state.salary);
         employmentContractView.renderEmployeeResult(state.salary);
         employmentContractView.renderEmployerResult(state.salary);
         break;
@@ -44,7 +44,7 @@ const controler = () => {
         state.salary = new MandateContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
-
+        console.log(state.salary);
         mandateContractView.renderEmployeeResult(state.salary);
         mandateContractView.renderEmployerResult(state.salary);
         break;

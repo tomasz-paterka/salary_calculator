@@ -1,4 +1,4 @@
-import { elements } from './baseView';
+import { elements, laborFundInfo } from './baseView';
 
 export const getAccidentInsInputEmployment = () => elements.accidentInsInputEmp.value;
 
@@ -36,6 +36,8 @@ export const renderEmployerResult = salary => {
     <p>Pracodawca</p>
   `;
   elements.employer_header.insertAdjacentHTML('afterbegin', headerMarkup);
+  
+  laborFundInfo(salary);
 
   const markup = `
     <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>

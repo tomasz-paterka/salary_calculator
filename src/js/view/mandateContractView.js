@@ -1,6 +1,4 @@
-import {
-  elements
-} from './baseView';
+import { elements, laborFundInfo } from './baseView';
 
 export const getAccidentInsInputMandate = () => elements.accidentInsInputMan.value;
 
@@ -213,6 +211,8 @@ export const renderEmployerResult = salary => {
     <p>Zleceniodawca</p>
   `;
   elements.employer_header.insertAdjacentHTML('afterbegin', headerMarkup);
+
+  laborFundInfo(salary);
 
   let markup, defaultEmployerMarkup;
 
