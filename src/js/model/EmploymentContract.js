@@ -24,20 +24,19 @@ export default class EmploymentContract {
   }
 
   calcTax() {
-    let costGettingIncome, taxFreeAmount;
-    // let taxBase
+    let costGettingIncome, taxFreeAmount, taxBasePercentage;
+    
     elements.stationaryJob.checked ? costGettingIncome = 250.00 : costGettingIncome = 300.00;
     elements.freeAmount.checked ? taxFreeAmount = 43.76 : taxFreeAmount = 0;
     
     const taxBase = Math.round((this.payment - this.socialIns) - costGettingIncome);
-    // console.log(taxBase);
-    // if (taxBase > 85528) {
-    //   console.log('big tax')
-    // } else if (taxBase <= 85528) {
-    //   console.log('small tax')
-    // }
-
-    this.PIT = Math.round(((taxBase * 0.17) - taxFreeAmount) - this.taxHealthIns);
+    if (taxBase > 85528) {
+      taxBasePercentage = 0.32;
+      this.PIT = Math.round(((14539.76 - taxFreeAmount) + ((taxBase - 85528) * taxBasePercentage)) - this.taxHealthIns);
+    } else if (taxBase <= 85528) {
+      taxBasePercentage = 0.17;
+      this.PIT = Math.round(((taxBase * taxBasePercentage) - taxFreeAmount) - this.taxHealthIns);
+    }
   }
 
   calcNettoPayment() {
