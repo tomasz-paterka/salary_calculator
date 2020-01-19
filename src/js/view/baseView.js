@@ -85,7 +85,7 @@ export const enterAmount = () => {
   elements.salaryInput.insertAdjacentHTML('afterend', markup);
 };
 
-export const laborFundInfo = (obj) =>  {
+export const laborFundInfo = obj =>  {
   if (obj.laborFund === 0) {
     const laborFundMarkup = `
       <p>Poniżej kwoty minimalnego wynagrodzenia, które wynosi ${obj.minimumSalary.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')} zł <br> w roku 2020, nie liczymy składki na Fundusz Pracy.</p>

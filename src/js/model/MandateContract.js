@@ -8,7 +8,8 @@ export default class MandateContract {
   calcInsurance(accidentInsPercentage) {
     !accidentInsPercentage ? accidentInsPercentage = 1.67 : accidentInsPercentage = accidentInsPercentage;
     this.minimumSalary = 2600.00;
-
+    this.diseaseInsLimit = 13067.50;
+    
     if (elements.socialInsCheck.checked) {
       this.employeeRetirementIns = ((this.payment * 9.76) / 100);
       this.employerRetirementIns = ((this.payment * 9.76) / 100);
@@ -22,7 +23,7 @@ export default class MandateContract {
     }
 
     if (elements.diseaseInsCheck.checked) {
-      this.diseaseIns = ((this.payment * 2.45) / 100);
+      this.payment >= this.diseaseInsLimit ? this.diseaseIns = 320.15 : this.diseaseIns = ((this.payment * 2.45) / 100);
       !this.socialIns ? this.socialIns = 0 : this.socialIns += this.diseaseIns;
     }
 
@@ -37,7 +38,8 @@ export default class MandateContract {
         this.healthIns = (((this.payment - this.socialIns ) * 9.00) / 100);
         this.taxHealthIns = (((this.payment - this.socialIns ) * 7.75) / 100);
       }
-    } else {
+    } 
+    else {
       this.healthIns = 0;
       this.taxHealthIns = 0;
     }
@@ -51,6 +53,7 @@ export default class MandateContract {
 
   calcTax() {
     let costGettingIncome, costGettingIncomePercentage, taxBase;
+    const taxBasePercentage = 0.17;
 
     if (elements.mandateContractCosts20.checked) {
       costGettingIncomePercentage = 0.2;
@@ -70,8 +73,7 @@ export default class MandateContract {
       costGettingIncome = Math.round(this.payment * costGettingIncomePercentage);
       taxBase = Math.round(this.payment - costGettingIncome);
     }
-
-    this.PIT = Math.round((taxBase * 0.17) - this.taxHealthIns);
+    this.PIT = Math.round((taxBase * taxBasePercentage) - this.taxHealthIns);
   }
 
   calcNettoPayment() {
@@ -86,7 +88,8 @@ export default class MandateContract {
       } else {
         this.netAmount = this.payment - this.socialIns - this.healthIns - this.PIT;
       }
-    } else {
+    } 
+    else {
       if (!this.socialIns && this.diseaseIns) {
         this.netAmountUnderAge = this.payment - this.diseaseIns - this.healthIns;
       } else if (!this.socialIns && !this.diseaseIns) {
