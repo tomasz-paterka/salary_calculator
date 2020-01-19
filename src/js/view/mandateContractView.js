@@ -2,19 +2,8 @@ import { elements, laborFundInfo } from './baseView';
 
 export const getAccidentInsInputMandate = () => elements.accidentInsInputMan.value;
 
-const diseaseInsLimitInfo = obj => {
-  if (obj.payment >= obj.diseaseInsLimit && elements.diseaseInsCheck.checked) {
-    const diseaseInsLimitMarkup = `
-      <p>W roku 2020 miesięczny limit podstawy wymiaru dobrowolnej składki na ubezpieczenie chorobowe wynosi ${obj.diseaseInsLimit.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')} zł</p>
-    `;
-    elements.result_info.insertAdjacentHTML('beforeend', diseaseInsLimitMarkup);
-  }
-};
-
 export const renderEmployeeResult = salary => {
   let markup, markupUnderAge;
-
-  diseaseInsLimitInfo(salary);
 
   const headerMarkup = `
     <p>Zleceniobiorca</p>
@@ -25,76 +14,76 @@ export const renderEmployeeResult = salary => {
     /* Cases above 26 year old */
     case elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka rentowa: ${salary.employeePensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns}</li>
+        <li>(-)Składka rentowa: ${salary.employeePensionIns}</li>
+        <li>(-)Składka chorobowa: ${salary.diseaseIns}</li>
+        <li>(-)Składka zdrowotna: ${salary.healthIns}</li>
+        <li>(-)Zaliczka PIT: ${salary.PIT}</li>
+        <li>Netto: ${salary.netAmount}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       break;
 
     case elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka rentowa: ${salary.employeePensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns}</li>
+        <li>(-)Składka rentowa: ${salary.employeePensionIns}</li>
+        <li>(-)Składka chorobowa: ${salary.diseaseIns}</li>
+        <li>(-)Zaliczka PIT: ${salary.PIT}</li>
+        <li>Netto: ${salary.netAmount}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       break;
 
     case elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka rentowa: ${salary.employeePensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns}</li>
+        <li>(-)Składka rentowa: ${salary.employeePensionIns}</li>
+        <li>(-)Zaliczka PIT: ${salary.PIT}</li>
+        <li>Netto: ${salary.netAmount}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       break;
 
     case !elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka chorobowa: ${salary.diseaseIns}</li>
+        <li>(-)Zaliczka PIT: ${salary.PIT}</li>
+        <li>Netto: ${salary.netAmount}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       break;
 
     case !elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka chorobowa: ${salary.diseaseIns}</li>
+        <li>(-)Składka zdrowotna: ${salary.healthIns}</li>
+        <li>(-)Zaliczka PIT: ${salary.PIT}</li>
+        <li>Netto: ${salary.netAmount}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       break;
 
     case !elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka zdrowotna: ${salary.healthIns}</li>
+        <li>(-)Zaliczka PIT: ${salary.PIT}</li>
+        <li>Netto: ${salary.netAmount}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       break;
 
     case !elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Zaliczka PIT: ${salary.PIT}</li>
+        <li>Netto: ${salary.netAmount}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       break;
@@ -102,14 +91,14 @@ export const renderEmployeeResult = salary => {
       /* Cases under 26 year old */
     case elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka rentowa: ${salary.employeePensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns}</li>
+        <li>(-)Składka rentowa: ${salary.employeePensionIns}</li>
+        <li>(-)Składka chorobowa: ${salary.diseaseIns}</li>
+        <li>(-)Składka zdrowotna: ${salary.healthIns}</li>
       `;
       markupUnderAge = `
-        <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Netto: ${salary.netAmountUnderAge}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
@@ -117,13 +106,13 @@ export const renderEmployeeResult = salary => {
 
     case elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka rentowa: ${salary.employeePensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns}</li>
+        <li>(-)Składka rentowa: ${salary.employeePensionIns}</li>
+        <li>(-)Składka chorobowa: ${salary.diseaseIns}</li>
       `;
       markupUnderAge = `
-        <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Netto: ${salary.netAmountUnderAge}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
@@ -131,12 +120,12 @@ export const renderEmployeeResult = salary => {
 
     case !elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka chorobowa: ${salary.diseaseIns}</li>
+        <li>(-)Składka zdrowotna: ${salary.healthIns}</li>
       `;
       markupUnderAge = `
-        <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Netto: ${salary.netAmountUnderAge}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
@@ -144,13 +133,13 @@ export const renderEmployeeResult = salary => {
 
     case elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka rentowa: ${salary.employeePensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns}</li>
+        <li>(-)Składka rentowa: ${salary.employeePensionIns}</li>
+        <li>(-)Składka zdrowotna: ${salary.healthIns}</li>
       `;
       markupUnderAge = `
-        <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Netto: ${salary.netAmountUnderAge}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
@@ -158,12 +147,12 @@ export const renderEmployeeResult = salary => {
 
     case elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka rentowa: ${salary.employeePensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns}</li>
+        <li>(-)Składka rentowa: ${salary.employeePensionIns}</li>
       `;
       markupUnderAge = `
-        <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Netto: ${salary.netAmountUnderAge}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
@@ -171,11 +160,11 @@ export const renderEmployeeResult = salary => {
 
     case !elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka chorobowa: ${salary.diseaseIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka chorobowa: ${salary.diseaseIns}</li>
       `;
       markupUnderAge = `
-        <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Netto: ${salary.netAmountUnderAge}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
@@ -183,11 +172,11 @@ export const renderEmployeeResult = salary => {
 
     case !elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka zdrowotna: ${salary.healthIns}</li>
       `;
       markupUnderAge = `
-        <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Netto: ${salary.netAmountUnderAge}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
@@ -195,10 +184,10 @@ export const renderEmployeeResult = salary => {
 
     case !elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
       `;
       markupUnderAge = `
-        <li>Netto: ${salary.netAmountUnderAge.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Netto: ${salary.netAmountUnderAge}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       elements.employeeResults.insertAdjacentHTML('beforeend', markupUnderAge);
@@ -206,12 +195,12 @@ export const renderEmployeeResult = salary => {
 
     default:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka rentowa: ${salary.employeePensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Składka zdrowotna: ${salary.healthIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(-)Zaliczka PIT: ${salary.PIT.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Netto: ${salary.netAmount.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(-)Składka emerytalna: ${salary.employeeRetirementIns}</li>
+        <li>(-)Składka rentowa: ${salary.employeePensionIns}</li>
+        <li>(-)Składka zdrowotna: ${salary.healthIns}</li>
+        <li>(-)Zaliczka PIT: ${salary.PIT}</li>
+        <li>Netto: ${salary.netAmount}</li>
       `;
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
   }
@@ -238,8 +227,8 @@ export const renderEmployerResult = salary => {
     case !elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && elements.ageInputMan.checked:
     case !elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && elements.ageInputMan.checked:
       markup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Koszty pracodawcy: ${salary.employerCosts.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>Koszty pracodawcy: ${salary.employerCosts}</li>
       `;
       elements.employerResults.insertAdjacentHTML('beforeend', markup);
       break;
@@ -249,13 +238,13 @@ export const renderEmployerResult = salary => {
     case elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && elements.ageInputMan.checked:
     default:
       defaultEmployerMarkup = `
-        <li>Brutto: ${salary.payment.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(+)Składka emerytalna: ${salary.employerRetirementIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(+)Składka rentowa: ${salary.employerPensionIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(+)Składka wypadkowa: ${salary.accidentIns.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(+)Fundusz Pracy: ${salary.laborFund.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>(+)FGŚP: ${salary.contributionFGSP.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
-        <li>Koszty pracodawcy: ${salary.employerCosts.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')}</li>
+        <li>Brutto: ${salary.payment}</li>
+        <li>(+)Składka emerytalna: ${salary.employerRetirementIns}</li>
+        <li>(+)Składka rentowa: ${salary.employerPensionIns}</li>
+        <li>(+)Składka wypadkowa: ${salary.accidentIns}</li>
+        <li>(+)Fundusz Pracy: ${salary.laborFund}</li>
+        <li>(+)FGŚP: ${salary.contributionFGSP}</li>
+        <li>Koszty pracodawcy: ${salary.employerCosts}</li>
       `;
       elements.employerResults.insertAdjacentHTML('beforeend', defaultEmployerMarkup);
   }

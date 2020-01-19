@@ -5,7 +5,7 @@ import * as workContractView from './view/workContractView';
 import EmploymentContract from './model/EmploymentContract';
 import MandateContract from './model/MandateContract';
 import WorkContract from './model/WorkContract';
-import { elements, getInput, controlerView, enterAmount, clearEnterAmount, clearResults, clearConvertInput } from './view/baseView';
+import { elements, getInput, controlerView, enterAmount, clearEnterAmount, clearResults, clearConvertInput, formatNumbers, diseaseInsLimitInfo } from './view/baseView';
 
 const state = {};
 
@@ -14,7 +14,7 @@ elements.contractsBtn.forEach(el => el.addEventListener('click', controlerView))
 
 const controler = () => {
   const pay = getInput();
-  let accidentInsPercentage;
+  let accidentInsPercentage, salaryFixedObj;
 
   if (pay) {
     clearResults();
@@ -32,8 +32,9 @@ const controler = () => {
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
 
-        employmentContractView.renderEmployeeResult(state.salary);
-        employmentContractView.renderEmployerResult(state.salary);
+        salaryFixedObj = formatNumbers(state.salary)
+        employmentContractView.renderEmployeeResult(salaryFixedObj);
+        employmentContractView.renderEmployerResult(salaryFixedObj);
         clearConvertInput();
         break;
 
@@ -44,9 +45,11 @@ const controler = () => {
         state.salary = new MandateContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
-
-        mandateContractView.renderEmployeeResult(state.salary);
-        mandateContractView.renderEmployerResult(state.salary);
+        diseaseInsLimitInfo(state.salary);
+        
+        salaryFixedObj = formatNumbers(state.salary)
+        mandateContractView.renderEmployeeResult(salaryFixedObj);
+        mandateContractView.renderEmployerResult(salaryFixedObj);
         clearConvertInput();
         break;
 
@@ -54,8 +57,9 @@ const controler = () => {
         state.salary = new WorkContract(pay);
         state.salary.calcNettoPayment();
 
-        workContractView.renderEmployeeResult(state.salary);
-        workContractView.renderEmployerResult(state.salary);
+        salaryFixedObj = formatNumbers(state.salary)
+        workContractView.renderEmployeeResult(salaryFixedObj);
+        workContractView.renderEmployerResult(salaryFixedObj);
         clearConvertInput();
       default:
     }

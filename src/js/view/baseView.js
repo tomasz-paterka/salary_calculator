@@ -42,6 +42,14 @@ export const elements = {
 
 export const getInput = () => parseFloat(elements.salaryInput.value.replace(',', '.'));
 
+export const formatNumbers = object => {
+  const keys = Object.keys(object);
+  const values = Object.values(object);
+  const salaryFixedObj = Object.assign({}, ...keys.map((key, i) => ({ [key]: values[i].toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',') })));
+
+  return salaryFixedObj;
+};
+
 export const convertInput = () => {
   if (elements.salaryInput.value !== '') {
     const markup = `
@@ -49,6 +57,15 @@ export const convertInput = () => {
       <p>Przelicz</p>
     `;
     elements.iconContainer.insertAdjacentHTML('beforeend', markup);
+  }
+};
+
+export const diseaseInsLimitInfo = obj => {
+  if (obj.payment >= obj.diseaseInsLimit && elements.diseaseInsCheck.checked) {
+    const diseaseInsLimitMarkup = `
+      <p>W roku 2020 miesięczny limit podstawy wymiaru dobrowolnej składki na ubezpieczenie chorobowe wynosi ${obj.diseaseInsLimit.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')} zł</p>
+    `;
+    elements.result_info.insertAdjacentHTML('beforeend', diseaseInsLimitMarkup);
   }
 };
 
@@ -107,9 +124,9 @@ export const enterAmount = () => {
 };
 
 export const laborFundInfo = obj =>  {
-  if (obj.laborFund === 0) {
+  if (obj.laborFund === '0,00') {
     const laborFundMarkup = `
-      <p>Poniżej kwoty minimalnego wynagrodzenia, które wynosi ${obj.minimumSalary.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')} zł <br> w roku 2020, nie liczymy składki na Fundusz Pracy.</p>
+      <p>Poniżej kwoty minimalnego wynagrodzenia, które wynosi ${obj.minimumSalary} zł <br> w roku 2020, nie liczymy składki na Fundusz Pracy.</p>
     `;
     elements.result_info.insertAdjacentHTML('afterbegin', laborFundMarkup);
   }

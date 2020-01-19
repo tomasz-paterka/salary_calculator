@@ -53,6 +53,16 @@ h4 {
   padding: 0 15px;
 }
 
+input[name="salary"],
+input[name="accidentIns"] {
+  font-family: $main-font;
+  font-weight: bold;
+  letter-spacing: 1px;
+  &:focus {
+    outline: 2px solid #135797;
+  }
+}
+
 input[type="radio"] {
   display: none;
 }
