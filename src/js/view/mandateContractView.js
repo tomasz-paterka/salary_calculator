@@ -3,7 +3,7 @@ import { elements, laborFundInfo } from './baseView';
 export const getAccidentInsInputMandate = () => elements.accidentInsInputMan.value;
 
 const diseaseInsLimitInfo = obj => {
-  if (obj.payment >= obj.diseaseInsLimit) {
+  if (obj.payment >= obj.diseaseInsLimit && elements.diseaseInsCheck.checked) {
     const diseaseInsLimitMarkup = `
       <p>W roku 2020 miesięczny limit podstawy wymiaru dobrowolnej składki na ubezpieczenie chorobowe wynosi ${obj.diseaseInsLimit.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')} zł</p>
     `;

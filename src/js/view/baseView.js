@@ -13,6 +13,7 @@ export const elements = {
   employee_header: document.querySelector('.employee_header'),
   employer_header: document.querySelector('.employer_header'),
   result_info: document.querySelector('.result_info'),
+  iconContainer: document.querySelector('.icon_container'),
 
   // Employment Contract elements
   employmentContract: document.getElementById('employment_contract'),
@@ -41,34 +42,54 @@ export const elements = {
 
 export const getInput = () => parseFloat(elements.salaryInput.value.replace(',', '.'));
 
+export const convertInput = () => {
+  if (elements.salaryInput.value !== '') {
+    const markup = `
+      <i class="icon ion-md-arrow-round-back"></i>
+      <p>Przelicz</p>
+    `;
+    elements.iconContainer.insertAdjacentHTML('beforeend', markup);
+  }
+};
+
+export const clearConvertInput = () => {
+  elements.iconContainer.innerHTML = '';
+};
+
 export const controlerView = () => {
   switch (true) {
     
     case elements.employmentContract.checked:
+      clearConvertInput();
+      convertInput();
       elements.employmentContract.parentNode.classList.add('active');
       elements.mandateContract.parentNode.classList.remove('active');
       elements.workContract.parentNode.classList.remove('active');
-
+      
       elements.employment_checkbox.style.display = 'block';
       elements.mandate_checkbox.style.display = 'none';
       elements.work_checkbox.style.display = 'none';
       break;
 
     case elements.mandateContract.checked:
+      clearConvertInput();
+      convertInput();
       elements.employmentContract.parentNode.classList.remove('active');
       elements.mandateContract.parentNode.classList.add('active');
       elements.workContract.parentNode.classList.remove('active');
-
+      
       elements.employment_checkbox.style.display = 'none';
       elements.mandate_checkbox.style.display = 'block';
       elements.work_checkbox.style.display = 'none';
       break;
 
     case elements.workContract.checked:
+      clearConvertInput();
+      convertInput();
       elements.employmentContract.parentNode.classList.remove('active');
       elements.mandateContract.parentNode.classList.remove('active');
       elements.workContract.parentNode.classList.add('active');
-
+      
       elements.employment_checkbox.style.display = 'none';
       elements.mandate_checkbox.style.display = 'none';
       elements.work_checkbox.style.display = 'block';

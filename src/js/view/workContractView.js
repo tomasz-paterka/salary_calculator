@@ -1,6 +1,17 @@
 import { elements } from './baseView';
 
+const flatTaxInfo = () => {
+  if (elements.flatTax.checked) {
+    const flatTaxInfoMarkup = `
+      <p>Przy zryczałtowanym podatku dochodowym nie odejmujemy kosztów uzyskania przychodu.</p>
+    `;
+    elements.result_info.insertAdjacentHTML('afterbegin', flatTaxInfoMarkup);
+  }
+}
+
 export const renderEmployeeResult = salary => {
+  flatTaxInfo();
+
   const headerMarkup = `
     <p>Wykonawca</p>
   `;

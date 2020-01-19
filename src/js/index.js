@@ -5,10 +5,9 @@ import * as workContractView from './view/workContractView';
 import EmploymentContract from './model/EmploymentContract';
 import MandateContract from './model/MandateContract';
 import WorkContract from './model/WorkContract';
-import { elements, getInput, controlerView, enterAmount, clearEnterAmount, clearResults } from './view/baseView';
+import { elements, getInput, controlerView, enterAmount, clearEnterAmount, clearResults, clearConvertInput } from './view/baseView';
 
 const state = {};
-window.s = state;
 
 controlerView();
 elements.contractsBtn.forEach(el => el.addEventListener('click', controlerView));
@@ -32,9 +31,10 @@ const controler = () => {
         state.salary = new EmploymentContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
-        console.log(state.salary);
+
         employmentContractView.renderEmployeeResult(state.salary);
         employmentContractView.renderEmployerResult(state.salary);
+        clearConvertInput();
         break;
 
       case elements.mandateContract.checked:
@@ -44,9 +44,10 @@ const controler = () => {
         state.salary = new MandateContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
-        console.log(state.salary);
+
         mandateContractView.renderEmployeeResult(state.salary);
         mandateContractView.renderEmployerResult(state.salary);
+        clearConvertInput();
         break;
 
       case elements.workContract.checked:
@@ -55,12 +56,11 @@ const controler = () => {
 
         workContractView.renderEmployeeResult(state.salary);
         workContractView.renderEmployerResult(state.salary);
-        
+        clearConvertInput();
       default:
     }
-    
-
-  } else if (!pay) {
+  } 
+  else if (!pay) {
     const enterAmountTag = document.querySelector('.enter_amount');
     if (!enterAmountTag) {
       enterAmount();

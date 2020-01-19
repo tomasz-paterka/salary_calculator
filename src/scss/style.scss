@@ -13,6 +13,8 @@ body {
   justify-content: center;
   align-items: center;
   font-family: $main-font;
+  background-color: #faf8f8ee;
+  
 }
 
 header {
@@ -39,17 +41,16 @@ h4 {
 }
 
 .active {
-  background-color: #5266FF;
+  background-color: #135797;
+  transition: 0.5s ease-in-out;
   &:hover {
-    transition: all 0.2s ease-in-out;
-    background-color: #507CFF;
+    background-color: #446bdf;
   }
 }
 
 .container {
   margin: 0 auto;
   padding: 0 15px;
-  // max-width: 1440px;
 }
 
 input[type="radio"] {
@@ -94,8 +95,6 @@ label {
 
 .contract_details {
   margin-top: 30px;
-  // display: flex;
-  // align-items: center;
   .checkbox {
     display: flex;
     align-items: center;
@@ -146,9 +145,37 @@ label {
   margin-right: 15px;
 }
 
-.result_btn {
-  @extend .btn;
-  @extend .active;
+.result_btn_container {
+  display: inline-flex;
+  align-items: center;
+  .result_btn {
+    @extend .btn;
+    @extend .active;
+  }
+  .icon_container {
+    display: inline-flex;
+    align-items: center;
+    color: #135797;
+
+    @keyframes bounce { 
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-20px); }
+    }
+
+    .icon {
+      animation: bounce 1.0s;
+      animation-direction: alternate;
+      animation-iteration-count: infinite;
+      font-size: 26px;
+      margin: 0 10px 0 30px;
+    }
+
+    p {
+      font-weight: bold;
+      letter-spacing: 1px;
+      font-size: 13px;
+    }
+  }
 }
 
 .result {
@@ -163,12 +190,12 @@ label {
     .employer-column {
       flex: 100%;
       max-width: 100%;
-      border: 1px solid #000;
+      border: 2px solid #135797;
     }
     
     .employee_header,
     .employer_header {
-      border-bottom: 1px solid #000;
+      border-bottom: 2px solid #135797;
       margin: 0 0 10px 0;
       p {
         font-weight: bold;
@@ -179,7 +206,6 @@ label {
     .employee-list,
     .employer-list {
       list-style: none;
-      // padding: 0 20px 0 5px;
       padding-left: 5px;
       li {
         padding: 2.5px 0;
@@ -203,9 +229,13 @@ label {
 }
 
 .result_info {
-  margin-top: 20px;
+  margin: 45px 0;
   position: relative;
   padding: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
   p {
     position: absolute;
     font-weight: bold;
