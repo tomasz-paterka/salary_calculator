@@ -14,11 +14,12 @@ body {
   align-items: center;
   font-family: $main-font;
   background-color: #faf8f8ee;
-  
+
 }
 
 header {
   margin-top: 50px;
+
   .selection-container {
     padding: 10px 0;
   }
@@ -38,14 +39,12 @@ h4 {
   font-size: 13px;
   font-family: $main-font;
   letter-spacing: 1px;
+  width: 182px;
 }
 
 .active {
   background-color: #135797;
   transition: 0.5s ease-in-out;
-  &:hover {
-    background-color: #446bdf;
-  }
 }
 
 .container {
@@ -58,6 +57,7 @@ input[name="accidentIns"] {
   font-family: $main-font;
   font-weight: bold;
   letter-spacing: 1px;
+
   &:focus {
     outline: 2px solid #135797;
   }
@@ -74,6 +74,7 @@ label {
 .salary-parameters {
   .salary {
     margin-top: 30px;
+
     input[name="salary"] {
       padding: 5px;
       text-align: end;
@@ -95,24 +96,26 @@ label {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
+}
 
-  .contracts_btn {
-    &:last-child {
-      margin-right: 0px;
-    }
-  }
+.contracts_btn {
+  @extend .btn;
+  margin: 15px 0;
 }
 
 .contract_details {
   margin-top: 30px;
+
   .checkbox {
     display: flex;
     align-items: center;
     font-family: $main-font;
-    margin-top: 15px;
+    margin: 25px 0;
+
     input[type="checkbox"] {
       margin-right: 5px;
     }
+
     input[name="accidentIns"] {
       margin-right: 5px;
       width: 50px;
@@ -134,15 +137,18 @@ label {
 .mandate_contract_costs,
 .work_contract_costs {
   margin-top: 20px;
+
   p {
     margin-bottom: 10px;
   }
+
   .mandate_contract_costs_label,
   .work_contract_costs_label {
-    margin-right: 15px;
+    margin-right: 25px;
     display: inline-flex;
     align-items: center;
   }
+
   input[name="mandate_costs"],
   input[name="work_costs"] {
     display: inline-block;
@@ -150,26 +156,29 @@ label {
   }
 }
 
-.contracts_btn {
-  @extend .btn;
-  margin-right: 15px;
-}
-
 .result_btn_container {
   display: inline-flex;
   align-items: center;
+
   .result_btn {
     @extend .btn;
     @extend .active;
+    width: 120px;
   }
+
   .icon_container {
     display: inline-flex;
     align-items: center;
     color: #135797;
 
-    @keyframes bounce { 
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-20px); }
+    @keyframes bounce {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-20px);
+      }
     }
 
     .icon {
@@ -190,23 +199,26 @@ label {
 
 .result {
   margin-top: 40px;
+
   .result-container {
     display: flex;
     flex-wrap: wrap;
     visibility: hidden;
     font-weight: bold;
     letter-spacing: 1px;
+
     .employee-column,
     .employer-column {
       flex: 100%;
       max-width: 100%;
       border: 2px solid #135797;
     }
-    
+
     .employee_header,
     .employer_header {
       border-bottom: 2px solid #135797;
       margin: 0 0 10px 0;
+
       p {
         font-weight: bold;
         padding: 10px 0 10px 5px;
@@ -217,35 +229,40 @@ label {
     .employer-list {
       list-style: none;
       padding-left: 5px;
+
       li {
         padding: 2.5px 0;
+
         &:first-child,
         &:last-child {
           color: #000;
         }
       }
     }
+
     .employee-list {
       li {
         color: #ff0000;
       }
     }
+
     .employer-list {
       li {
-        color:  #008000;
+        color: #008000;
       }
     }
   }
 }
 
 .result_info {
-  margin: 45px 0;
+  margin: 55px 0;
   position: relative;
   padding: 5px;
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
+
   p {
     position: absolute;
     font-weight: bold;
@@ -255,35 +272,64 @@ label {
 /* RESPONSIVE STYLES */
 
 @media screen and (max-width: 767.98px) {
+
   .container,
   .salary-parameters,
+  .salary,
   .contract-type,
   .contracts {
     display: inline-flex;
     align-items: center;
     flex-direction: column;
   }
+
   .enter_amount {
     margin-top: 5px;
     display: block;
   }
+
   .employer-column {
     margin-top: 15px;
   }
 }
 
 @media (min-width: 768px) {
+  .contracts_btn {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  .contract_details {
+    .checkbox {
+      margin: 15px 0;
+    }
+  }
+
   .result {
     .result-container {
+
       .employee-column,
       .employer-column {
         flex: 50%;
         max-width: 50%;
         width: 400px;
       }
+
       .employee-column {
         border-right: none;
       }
     }
   }
 }
+
+@media (min-width: 1024px) {
+  .active {
+    &:hover {
+      background-color: #446bdf;
+    }
+  }
+}
+

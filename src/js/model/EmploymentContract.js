@@ -30,6 +30,8 @@ export default class EmploymentContract {
     elements.freeAmount.checked ? taxFreeAmount = 43.76 : taxFreeAmount = 0;
     
     const taxBase = Math.round((this.payment - this.socialIns) - costGettingIncome);
+
+    // tax scale
     if (taxBase > 85528) {
       taxBasePercentage = 0.32;
       this.PIT = Math.round(((14539.76 - taxFreeAmount) + ((taxBase - 85528) * taxBasePercentage)) - this.taxHealthIns);

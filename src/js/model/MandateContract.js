@@ -65,7 +65,7 @@ export default class MandateContract {
       costGettingIncome = Math.round((this.payment - this.diseaseIns) * costGettingIncomePercentage);
       taxBase = Math.round((this.payment - this.diseaseIns) - costGettingIncome);
     } 
-    else if ((this.socialIns && !this.diseaseIns) || (this.socialIns && this.diseaseIns && !this.healthIns) || (this.socialIns && this.diseaseIns && this.healthIns)) {
+    else if (this.socialIns && !this.diseaseIns || this.socialIns && this.diseaseIns && !this.healthIns || this.socialIns && this.diseaseIns && this.healthIns) {
       costGettingIncome = Math.round((this.payment - this.socialIns) * costGettingIncomePercentage);
       taxBase = Math.round((this.payment - this.socialIns) - costGettingIncome);
     } 

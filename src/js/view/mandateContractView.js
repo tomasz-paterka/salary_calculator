@@ -214,7 +214,7 @@ export const renderEmployerResult = salary => {
 
   laborFundInfo(salary);
 
-  let markup, defaultEmployerMarkup;
+  let markup;
 
   switch (true) {
     /* Cases under 26 year old */
@@ -237,7 +237,7 @@ export const renderEmployerResult = salary => {
     case elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && elements.ageInputMan.checked:
     case elements.socialInsCheck.checked && !elements.diseaseInsCheck.checked && !elements.healthInsCheck.checked && elements.ageInputMan.checked:
     default:
-      defaultEmployerMarkup = `
+      markup = `
         <li>Brutto: ${salary.payment}</li>
         <li>(+)Składka emerytalna: ${salary.employerRetirementIns}</li>
         <li>(+)Składka rentowa: ${salary.employerPensionIns}</li>
@@ -246,6 +246,6 @@ export const renderEmployerResult = salary => {
         <li>(+)FGŚP: ${salary.contributionFGSP}</li>
         <li>Koszty pracodawcy: ${salary.employerCosts}</li>
       `;
-      elements.employerResults.insertAdjacentHTML('beforeend', defaultEmployerMarkup);
+      elements.employerResults.insertAdjacentHTML('beforeend', markup);
   }
 };
