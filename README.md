@@ -5,3 +5,5 @@ You can calculate salary in Poland for three different types of contracts:
 - employment contract
 - mandate contract
 - work contract
+
+<a href="https://tomasz-paterka.github.io/salary_calculator/">Live preview</a>
