@@ -1,6 +1,22 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
 $main-font: 'Montserrat', sans-serif;
 
+@mixin flex_align_center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin inline_flex_align_center {
+  display: inline-flex;
+  align-items: center;
+}
+
+@mixin flex_center_all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,13 +24,10 @@ $main-font: 'Montserrat', sans-serif;
 }
 
 body {
-  display: flex;
+  @include flex_center_all;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   font-family: $main-font;
   background-color: #faf8f8ee;
-
 }
 
 header {
@@ -39,7 +52,7 @@ h4 {
   font-size: 13px;
   font-family: $main-font;
   letter-spacing: 1px;
-  width: 182px;
+  width: 12rem;
 }
 
 .active {
@@ -93,8 +106,7 @@ label {
 }
 
 .contracts {
-  display: flex;
-  align-items: center;
+  @include flex_align_center;
   flex-wrap: wrap;
 }
 
@@ -107,8 +119,7 @@ label {
   margin-top: 30px;
 
   .checkbox {
-    display: flex;
-    align-items: center;
+    @include flex_align_center;
     font-family: $main-font;
     margin: 25px 0;
 
@@ -145,8 +156,7 @@ label {
   .mandate_contract_costs_label,
   .work_contract_costs_label {
     margin-right: 25px;
-    display: inline-flex;
-    align-items: center;
+    @include inline_flex_align_center;
   }
 
   input[name="mandate_costs"],
@@ -157,8 +167,7 @@ label {
 }
 
 .result_btn_container {
-  display: inline-flex;
-  align-items: center;
+  @include inline_flex_align_center;
 
   .result_btn {
     @extend .btn;
@@ -167,8 +176,7 @@ label {
   }
 
   .icon_container {
-    display: inline-flex;
-    align-items: center;
+    @include inline_flex_align_center;
     color: #135797;
 
     @keyframes bounce {
@@ -258,10 +266,8 @@ label {
   margin: 55px 0;
   position: relative;
   padding: 5px;
-  display: flex;
+  @include flex_center_all;
   flex-direction: row;
-  justify-content: center;
-  align-items: center;
 
   p {
     position: absolute;
@@ -278,8 +284,7 @@ label {
   .salary,
   .contract-type,
   .contracts {
-    display: inline-flex;
-    align-items: center;
+    @include inline_flex_align_center;
     flex-direction: column;
   }
 
@@ -332,4 +337,3 @@ label {
     }
   }
 }
-
