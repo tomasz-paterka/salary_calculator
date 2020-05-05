@@ -6,7 +6,10 @@ export default class EmploymentContract {
   }
 
   calcInsurance(accidentInsPercentage) {
-    !accidentInsPercentage ? accidentInsPercentage = 1.67 : accidentInsPercentage = accidentInsPercentage;
+    if (!accidentInsPercentage) {
+      accidentInsPercentage = 1.67
+    }
+    
     this.minimumSalary = 2600.00;
 
     this.employeeRetirementIns = ((this.payment * 9.76) / 100);

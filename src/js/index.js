@@ -61,6 +61,7 @@ const controler = () => {
         workContractView.renderEmployeeResult(salaryFixedObj);
         workContractView.renderEmployerResult(salaryFixedObj);
         clearConvertInput();
+        break;
       default:
     }
   } 
