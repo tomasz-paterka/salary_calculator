@@ -2,9 +2,9 @@ import '../scss/style.scss';
 import * as employmentContractView from './view/employmentContractView';
 import * as mandateContractView from './view/mandateContractView';
 import * as workContractView from './view/workContractView';
-import EmploymentContract from './model/EmploymentContract';
-import MandateContract from './model/MandateContract';
-import WorkContract from './model/WorkContract';
+import EmploymentContract from './model/EmploymentContract/EmploymentContract';
+import MandateContract from './model/MandateContract/MandateContract';
+import WorkContract from './model/WorkContract/WorkContract';
 import { elements, getInput, controlerView, enterAmount, clearEnterAmount, clearResults, clearConvertInput, formatNumbers, diseaseInsLimitInfo } from './view/baseView';
 
 const state = {};
@@ -21,13 +21,13 @@ const controler = () => {
     clearEnterAmount();
     
     elements.resultContainer.style = 'visibility: visible';
-
+    
     switch (true) {
       
       case elements.employmentContract.checked:
         accidentInsPercentage = employmentContractView.getAccidentInsInputEmployment();
         accidentInsPercentage = accidentInsPercentage.replace(/,/g, '.');
-
+        
         state.salary = new EmploymentContract(pay);
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
@@ -46,7 +46,7 @@ const controler = () => {
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
         diseaseInsLimitInfo(state.salary);
-        
+
         salaryFixedObj = formatNumbers(state.salary)
         mandateContractView.renderEmployeeResult(salaryFixedObj);
         mandateContractView.renderEmployerResult(salaryFixedObj);

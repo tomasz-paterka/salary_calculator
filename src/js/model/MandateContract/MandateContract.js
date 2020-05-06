@@ -1,4 +1,13 @@
-import { elements } from '../view/baseView';
+import { elements } from '../../view/baseView';
+import { retirementInsPercentage,
+  employeePensionInsPercentage, 
+  employerPensionInsPercentage, 
+  diseaseInsPercentage, 
+  healthInsPercentage, 
+  taxHealthInsPercentage, 
+  laborFundPercentage, 
+  percentageOfFGSP,
+  minimumSalary } from '../insurancePercentages';
 
 export default class MandateContract {
   constructor(payment) {
@@ -9,47 +18,47 @@ export default class MandateContract {
     if (!accidentInsPercentage) {
       accidentInsPercentage = 1.67
     }
-    this.minimumSalary = 2600.00;
-    this.diseaseInsLimit = 13067.50;
+
+    const {payment} = this;
     
     if (elements.socialInsCheck.checked) {
-      this.employeeRetirementIns = ((this.payment * 9.76) / 100);
-      this.employerRetirementIns = ((this.payment * 9.76) / 100);
-      this.employeePensionIns = ((this.payment * 1.50) / 100);
-      this.employerPensionIns = ((this.payment * 6.50) / 100);
-      this.accidentIns = ((this.payment * accidentInsPercentage) / 100);
+      this.employeeRetirementIns = ((payment * retirementInsPercentage) / 100);
+      this.employerRetirementIns = ((payment * retirementInsPercentage) / 100);
+      this.employeePensionIns = ((payment * employeePensionInsPercentage) / 100);
+      this.employerPensionIns = ((payment * employerPensionInsPercentage) / 100);
+      this.accidentIns = ((payment * accidentInsPercentage) / 100);
       this.socialIns = this.employeeRetirementIns + this.employeePensionIns;
       this.socialInsEmployer = this.employerRetirementIns + this.employerPensionIns;
-      this.payment >= this.minimumSalary ? this.laborFund = ((this.payment * 2.45) / 100) : this.laborFund = 0;
-      this.contributionFGSP = ((this.payment * 0.10) / 100);
+      payment >= minimumSalary ? this.laborFund = ((payment * laborFundPercentage) / 100) : this.laborFund = 0;
+      this.contributionFGSP = ((payment * percentageOfFGSP) / 100);
     }
 
+    this.diseaseInsLimit = 13067.50;
     if (elements.diseaseInsCheck.checked) {
-      this.payment >= this.diseaseInsLimit ? this.diseaseIns = 320.15 : this.diseaseIns = ((this.payment * 2.45) / 100);
+      payment >= this.diseaseInsLimit ? this.diseaseIns = 320.15 : this.diseaseIns = ((this.payment * diseaseInsPercentage) / 100);
       !this.socialIns ? this.socialIns = 0 : this.socialIns += this.diseaseIns;
     }
 
     if (elements.healthInsCheck.checked) {
       if (!this.socialIns && this.diseaseIns) {
-        this.healthIns = (((this.payment - this.diseaseIns) * 9.00) / 100);
-        this.taxHealthIns = (((this.payment - this.diseaseIns) * 7.75) / 100);
+        this.healthIns = (((payment - this.diseaseIns) * healthInsPercentage) / 100);
+        this.taxHealthIns = (((payment - this.diseaseIns) * taxHealthInsPercentage) / 100);
       } else if (!this.socialIns && !this.diseaseIns)  {
-        this.healthIns = ((this.payment * 9.00) / 100);
-        this.taxHealthIns = ((this.payment * 7.75) / 100);
+        this.healthIns = ((payment * healthInsPercentage) / 100);
+        this.taxHealthIns = ((payment * taxHealthInsPercentage) / 100);
       } else {
-        this.healthIns = (((this.payment - this.socialIns ) * 9.00) / 100);
-        this.taxHealthIns = (((this.payment - this.socialIns ) * 7.75) / 100);
+        this.healthIns = (((payment - this.socialIns ) * healthInsPercentage) / 100);
+        this.taxHealthIns = (((payment - this.socialIns ) * taxHealthInsPercentage) / 100);
       }
-    } 
-    else {
+    } else {
       this.healthIns = 0;
       this.taxHealthIns = 0;
     }
 
     if (!this.socialInsEmployer) {
-      this.employerCosts = this.payment;
+      this.employerCosts = payment;
     } else {
-      this.employerCosts = this.payment + this.socialInsEmployer + this.accidentIns + this.laborFund + this.contributionFGSP;
+      this.employerCosts = payment + this.socialInsEmployer + this.accidentIns + this.laborFund + this.contributionFGSP;
     }
   }
 

@@ -1,9 +1,9 @@
-import { elements } from '../view/baseView';
+import { elements } from '../../view/baseView';
 
 export default class WorkContract {
   constructor(payment) {
     this.payment = payment;
-    this.employerCosts = this.payment;
+    this.employerCosts = payment;
   }
 
   calcTax() {
