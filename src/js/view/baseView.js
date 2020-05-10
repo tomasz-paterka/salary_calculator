@@ -5,15 +5,15 @@ export const elements = {
   resultContainer: document.querySelector('.result-container'),
   employeeResults: document.querySelector('.employee-list'),
   employerResults: document.querySelector('.employer-list'),
-  contractsDetail: document.querySelector('.contract_details'),
-  contractsBtn: document.querySelectorAll('.contracts_btn'),
-  employment_checkbox: document.querySelector('.employment_checkbox'),
-  mandate_checkbox: document.querySelector('.mandate_checkbox'),
-  work_checkbox: document.querySelector('.work_checkbox'),
+  contractsDetail: document.querySelector('.contract-details'),
+  contractsBtn: document.querySelectorAll('.contract-type__btn'),
+  employment_checkbox: document.querySelector('.employment'),
+  mandate_checkbox: document.querySelector('.mandate'),
+  work_checkbox: document.querySelector('.work'),
   employee_header: document.querySelector('.employee_header'),
   employer_header: document.querySelector('.employer_header'),
   result_info: document.querySelector('.result_info'),
-  iconContainer: document.querySelector('.icon_container'),
+  iconContainer: document.querySelector('.result-btn__icon'),
 
   // Employment Contract elements
   employmentContract: document.getElementById('employment_contract'),
@@ -118,13 +118,13 @@ export const controlerView = () => {
 
 export const enterAmount = () => {
   const markup = `
-    <p class="enter_amount">Proszę wpisać kwotę wypłaty</p>
+    <p class="salary__enter-amount">Proszę wpisać kwotę wypłaty</p>
   `;
   elements.salaryInput.insertAdjacentHTML('afterend', markup);
 };
 
 export const clearEnterAmount = () => {
-  const enterAmountTag = document.querySelector('.enter_amount');
+  const enterAmountTag = document.querySelector('.salary__enter-amount');
   if (enterAmountTag) {
     enterAmountTag.parentElement.removeChild(enterAmountTag)
   }

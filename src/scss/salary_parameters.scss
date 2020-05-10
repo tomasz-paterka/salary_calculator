@@ -1,0 +1,91 @@
+.salary {
+  margin-top: 30px;
+
+  .salary__input {
+    padding: 5px;
+    text-align: end;
+    width: 50%;
+  }
+
+  .salary__enter-amount {
+    color: #ff0000;
+    display: inline;
+  }
+}
+
+.salary__input,
+.accidentInsPercentage {
+  font-family: $main-font;
+  font-weight: bold;
+  letter-spacing: 1px;
+
+  &:focus {
+    outline: 2px solid #135797;
+  }
+}
+
+.contract-type {
+  padding: 20px 0;
+
+  .contract-type__contracts {
+    @include flex_align_center;
+    flex-wrap: wrap;
+  }
+}
+
+.contract-type__btn {
+  @extend .btn;
+  margin: 15px 0;
+  cursor: pointer;
+}
+
+.contract-details {
+  margin-top: 30px;
+
+  .contract-details__checkbox {
+    @include flex_align_center;
+    font-family: $main-font;
+    margin: 25px 0;
+
+    input[type="checkbox"] {
+      margin-right: 5px;
+    }
+
+    .accidentInsPercentage {
+      margin-right: 5px;
+      width: 50px;
+      height: 30px;
+      text-align: center;
+    }
+  }
+}
+
+.employment {
+  display: block;
+}
+
+.mandate,
+.work {
+  display: none;
+}
+
+.mandate__costs,
+.work__costs {
+  margin-top: 20px;
+
+  .costs__text {
+    margin-bottom: 10px;
+  }
+
+  .mandate__costs--label,
+  .work__costs--label {
+    margin-right: 25px;
+    @include inline_flex_align_center;
+  }
+
+  .mandate__costs--input,
+  .work__costs--input {
+    display: inline-block;
+    margin-right: 5px;
+  }
+}

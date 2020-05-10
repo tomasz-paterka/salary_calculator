@@ -1,0 +1,15 @@
+@mixin flex_align_center {
+  display: flex;
+  align-items: center;
+}
+
+@mixin inline_flex_align_center {
+  display: inline-flex;
+  align-items: center;
+}
+
+@mixin flex_center_all {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -66,7 +66,7 @@ const controler = () => {
     }
   } 
   else if (!pay) {
-    const enterAmountTag = document.querySelector('.enter_amount');
+    const enterAmountTag = document.querySelector('.salary__enter-amount');
     if (!enterAmountTag) {
       enterAmount();
     }

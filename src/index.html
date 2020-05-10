@@ -11,9 +11,9 @@
 
 <body>
   <div class="container">
-    <header>
+    <header class="header">
       <h3>Kalkulator wynagrodzeń</h3>
-      <div class="selection-container">
+      <div class="header__year-selection">
         <label for="tax-year">Rok podatkowy</label>
         <select name="tax-years" id="tax-year">
           <option value="2020">2020</option>
@@ -26,50 +26,104 @@
     <section class="salary-parameters">
       <div class="salary">
         <h4>Wynagrodzenie miesięczne brutto</h4>
-        <input type="text" name="salary" autocomplete="off" id="salaryInput">
+        <input class="salary__input" type="text" name="salary" autocomplete="off" id="salaryInput">
       </div>
       <div class="contract-type">
         <h4>Rodzaj umowy</h4>
-        <div class="contracts">
-          <label class="contracts_btn" for="employment_contract"><input checked type="radio" id="employment_contract" name="contract" value="employment">Umowa o pracę</label>
-          <label class="contracts_btn" for="mandate_contract"><input type="radio" id="mandate_contract" name="contract" value="mandate">Umowa zlecenie</label>
-          <label class="contracts_btn" for="work_contract"><input type="radio" id="work_contract" name="contract" value="work">Umowa o dzieło</label>
+        <div class="contract-type__contracts">
+          <label class="contract-type__btn" for="employment_contract">
+            <input checked type="radio" id="employment_contract" name="contract" value="employment">
+            Umowa o pracę
+          </label>
+          <label class="contract-type__btn" for="mandate_contract">
+            <input type="radio" id="mandate_contract" name="contract" value="mandate">
+            Umowa zlecenie
+          </label>
+          <label class="contract-type__btn" for="work_contract">
+            <input type="radio" id="work_contract" name="contract" value="work">
+            Umowa o dzieło
+          </label>
         </div>
-        <div class="contract_details">
-          <div class="employment_checkbox">
-            <label class="checkbox" for="accidentIns"><input id="accidentInsEmp" type="text" name="accidentIns" placeholder="1.67">% składki na ubezpieczenie wypadkowe</label>
-            <label class="checkbox" for="ageEmp"><input checked id="ageEmp" type="checkbox">ukończony 26 rok życia</label>
-            <label class="checkbox" for="stationaryJob"><input checked id="stationaryJob" type="checkbox">praca w miejscu zamieszkania</label>
-            <label class="checkbox" for="freeAmount"><input checked id="freeAmount" type="checkbox">kwota wolna</label>
+        <div class="contract-details">
+          <div class="employment">
+            <label class="contract-details__checkbox" for="accidentIns">
+              <input class="accidentInsPercentage" id="accidentInsEmp" type="text" name="accidentIns" placeholder="1.67">
+              % składki na ubezpieczenie wypadkowe
+            </label>
+            <label class="contract-details__checkbox" for="ageEmp">
+              <input checked id="ageEmp" type="checkbox">
+              ukończony 26 rok życia
+            </label>
+            <label class="contract-details__checkbox" for="stationaryJob">
+              <input checked id="stationaryJob" type="checkbox">
+              praca w miejscu zamieszkania
+            </label>
+            <label class="contract-details__checkbox" for="freeAmount">
+              <input checked id="freeAmount" type="checkbox">
+              kwota wolna
+            </label>
           </div>
-          <div class="mandate_checkbox">
-            <label class="checkbox" for="accidentIns"><input id="accidentInsMan" type="text" name="accidentIns" placeholder="1.67">% składki na ubezpieczenie wypadkowe</label>
-            <label class="checkbox" for="ageMan"><input checked id="ageMan" type="checkbox">ukończony 26 rok życia</label>
-            <label class="checkbox" for="socialIns"><input checked id="socialIns" type="checkbox">ubezpieczenia społeczne</label>
-            <label class="checkbox" for="diseaseIns"><input id="diseaseIns" type="checkbox">ubezpieczenie chorobowe</label>
-            <label class="checkbox" for="healthIns"><input checked id="healthIns" type="checkbox">ubezpieczenie zdrowotne</label>
-            <div class="mandate_contract_costs">
-              <p>Koszty uzyskania przychodu</p>
-              <label class="mandate_contract_costs_label" for="mandate_contract_20"><input checked type="radio" id="mandate_contract_20" name="mandate_costs" value="20">20%</label>
-              <label class="mandate_contract_costs_label" for="mandate_contract_50"><input type="radio" id="mandate_contract_50" name="mandate_costs" value="50">50%</label>
+          <div class="mandate">
+            <label class="contract-details__checkbox" for="accidentIns">
+              <input class="accidentInsPercentage" id="accidentInsMan" type="text" name="accidentIns" placeholder="1.67">
+              % składki na ubezpieczenie wypadkowe
+            </label>
+            <label class="contract-details__checkbox" for="ageMan">
+              <input checked id="ageMan" type="checkbox">
+              ukończony 26 rok życia
+            </label>
+            <label class="contract-details__checkbox" for="socialIns">
+              <input checked id="socialIns" type="checkbox">
+              ubezpieczenia społeczne
+            </label>
+            <label class="contract-details__checkbox" for="diseaseIns">
+              <input id="diseaseIns" type="checkbox">
+              ubezpieczenie chorobowe
+            </label>
+            <label class="contract-details__checkbox" for="healthIns">
+              <input checked id="healthIns" type="checkbox">
+              ubezpieczenie zdrowotne
+            </label>
+            <div class="mandate__costs">
+              <p class="costs__text">Koszty uzyskania przychodu</p>
+              <label class="mandate__costs--label" for="mandate_contract_20">
+                <input class="mandate__costs--input" checked type="radio" id="mandate_contract_20" name="mandate_costs" value="20">
+                20%
+              </label>
+              <label class="mandate__costs--label" for="mandate_contract_50">
+                <input class="mandate__costs--input" type="radio" id="mandate_contract_50" name="mandate_costs" value="50">
+                50%
+              </label>
             </div>
           </div>
-          <div class="work_checkbox">
-            <label class="checkbox" for="ageWork"><input checked id="ageWork" type="checkbox">ukończony 26 rok życia</label>
-            <label class="checkbox" for="flatTax"><input id="flatTax" type="checkbox">zryczałtowany podatek</label>
-            <div class="work_contract_costs">
-              <p>Koszty uzyskania przychodu</p>
-              <label class="work_contract_costs_label" for="work_contract_20"><input checked type="radio" id="work_contract_20" name="work_costs" value="20">20%</label>
-              <label class="work_contract_costs_label" for="work_contract_50"><input type="radio" id="work_contract_50" name="work_costs" value="50">50%</label>
+          <div class="work">
+            <label class="contract-details__checkbox" for="ageWork">
+              <input checked id="ageWork" type="checkbox">
+              ukończony 26 rok życia
+            </label>
+            <label class="contract-details__checkbox" for="flatTax">
+              <input id="flatTax" type="checkbox">
+              zryczałtowany podatek
+            </label>
+            <div class="work__costs">
+              <p class="costs__text">Koszty uzyskania przychodu</p>
+              <label class="work__costs--label" for="work_contract_20">
+                <input class="work__costs--input" checked type="radio" id="work_contract_20" name="work_costs" value="20">
+                20%
+              </label>
+              <label class="work__costs--label" for="work_contract_50">
+                <input class="work__costs--input" type="radio" id="work_contract_50" name="work_costs" value="50">
+                50%
+              </label>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <div class="result_btn_container">
-      <button class="result_btn">Oblicz</button>
-      <div class="icon_container"></div>
+    <div class="result-btn">
+      <button class="result-btn__btn">Oblicz</button>
+      <div class="result-btn__icon"></div>
     </div>
 
     <section class="result">

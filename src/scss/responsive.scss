@@ -1,0 +1,59 @@
+@media screen and (max-width: 767.98px) {
+  .container,
+  .salary-parameters,
+  .salary,
+  .contract-type,
+  .contract-type__contracts {
+    @include inline_flex_align_center;
+    flex-direction: column;
+  }
+
+  .salary__enter-amount {
+    margin-top: 5px;
+    display: block;
+  }
+
+  .employer-column {
+    margin-top: 15px;
+  }
+}
+
+@media (min-width: 768px) {
+  .contract-type__btn {
+    margin-right: 15px;
+
+    &:last-child {
+      margin-right: 0px;
+    }
+  }
+
+  .contract-details {
+    .contract-details__checkbox {
+      margin: 15px 0;
+    }
+  }
+
+  .result {
+    .result-container {
+
+      .employee-column,
+      .employer-column {
+        flex: 50%;
+        max-width: 50%;
+        width: 400px;
+      }
+
+      .employee-column {
+        border-right: none;
+      }
+    }
+  }
+}
+
+@media (min-width: 1024px) {
+  .active {
+    &:hover {
+      background-color: #446bdf;
+    }
+  }
+}
