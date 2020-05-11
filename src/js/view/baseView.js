@@ -1,18 +1,18 @@
 export const elements = {
   // Main elements
   salaryInput: document.getElementById('salaryInput'),
-  calcBtn: document.querySelector('.result_btn'),
-  resultContainer: document.querySelector('.result-container'),
-  employeeResults: document.querySelector('.employee-list'),
-  employerResults: document.querySelector('.employer-list'),
+  calcBtn: document.querySelector('.result-btn__btn'),
+  resultContainer: document.querySelector('.result'),
+  employeeResults: document.querySelector('.employee-column__list'),
+  employerResults: document.querySelector('.employer-column__list'),
   contractsDetail: document.querySelector('.contract-details'),
   contractsBtn: document.querySelectorAll('.contract-type__btn'),
   employment_checkbox: document.querySelector('.employment'),
   mandate_checkbox: document.querySelector('.mandate'),
   work_checkbox: document.querySelector('.work'),
-  employee_header: document.querySelector('.employee_header'),
-  employer_header: document.querySelector('.employer_header'),
-  result_info: document.querySelector('.result_info'),
+  employee_header: document.querySelector('.employee-column__header'),
+  employer_header: document.querySelector('.employer-column__header'),
+  result_info: document.querySelector('.result-container__info'),
   iconContainer: document.querySelector('.result-btn__icon'),
 
   // Employment Contract elements
