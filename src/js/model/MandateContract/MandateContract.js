@@ -9,11 +9,19 @@ import { retirementInsPercentage,
   percentageOfFGSP,
   minimumSalary } from '../insurancePercentages';
 
+/** Class representing salary object */
 export default class MandateContract {
+  /**
+   * @param {number} payment
+   */
   constructor(payment) {
     this.payment = payment
   }
 
+  /**
+   * @param  {number} accidentInsPercentage - percentage of accident insurance
+   * Calculating salary insurances
+   */
   calcInsurance(accidentInsPercentage) {
     if (!accidentInsPercentage) {
       accidentInsPercentage = 1.67
@@ -21,6 +29,9 @@ export default class MandateContract {
 
     const {payment} = this;
     
+    /**
+     * if(elements.socialInsCheck.checked) calculate social insurances 
+     */
     if (elements.socialInsCheck.checked) {
       this.employeeRetirementIns = ((payment * retirementInsPercentage) / 100);
       this.employerRetirementIns = ((payment * retirementInsPercentage) / 100);
@@ -33,12 +44,18 @@ export default class MandateContract {
       this.contributionFGSP = ((payment * percentageOfFGSP) / 100);
     }
 
+    /**
+     * if(elements.diseaseInsCheck.checked) calculate disease insurance and check payment limit 
+     */
     this.diseaseInsLimit = 13067.50;
     if (elements.diseaseInsCheck.checked) {
       payment >= this.diseaseInsLimit ? this.diseaseIns = 320.15 : this.diseaseIns = ((this.payment * diseaseInsPercentage) / 100);
       !this.socialIns ? this.socialIns = 0 : this.socialIns += this.diseaseIns;
     }
-
+    
+    /**
+     * if(elements.healthInsCheck.checked) calculate health insurance and the part that we deduct from tax
+     */
     if (elements.healthInsCheck.checked) {
       if (!this.socialIns && this.diseaseIns) {
         this.healthIns = (((payment - this.diseaseIns) * healthInsPercentage) / 100);
@@ -62,16 +79,25 @@ export default class MandateContract {
     }
   }
 
+  /**
+   * Calculating salary tax
+   */
   calcTax() {
     let costGettingIncome, costGettingIncomePercentage, taxBase;
     const taxBasePercentage = 0.17;
 
+    /**
+     * Determination costs of getting income
+     */
     if (elements.mandateContractCosts20.checked) {
       costGettingIncomePercentage = 0.2;
     } else if (elements.mandateContractCosts50.checked) {
       costGettingIncomePercentage = 0.5;
     }
-    
+
+    /**
+     * Determination of the tax base dependent on selected insurances
+     */
     if (!this.socialIns && this.diseaseIns) {
       costGettingIncome = Math.round((this.payment - this.diseaseIns) * costGettingIncomePercentage);
       taxBase = Math.round((this.payment - this.diseaseIns) - costGettingIncome);
@@ -87,6 +113,10 @@ export default class MandateContract {
     this.PIT = Math.round((taxBase * taxBasePercentage) - this.taxHealthIns);
   }
 
+  /**
+   * Calculating netto payment 
+   * if(elements.ageInputMan.checked) person is above 26 year old so we calculate the tax and payment, else is under 26 year and calculate only the payment
+   */
   calcNettoPayment() {
     if (elements.ageInputMan.checked) {
       this.calcTax();
