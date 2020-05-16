@@ -10,17 +10,18 @@ import { retirementInsPercentage,
 
 
 /** Class representing salary object */
-export default class EmploymentContract {
+class EmploymentContract {
   /**
-   * @param {number} payment
+   * @param {number} payment - salary from work
    */
   constructor(payment) {
     this.payment = payment;
   }
   
   /**
+   * Calculating salary insurances:
+   * social, health, accident, FGSP, labor fund and employer costs
    * @param  {number} accidentInsPercentage - percentage of accident insurance
-   * Calculating salary insurances
    */
   calcInsurance(accidentInsPercentage) {
     if (!accidentInsPercentage) {
@@ -45,21 +46,18 @@ export default class EmploymentContract {
   }
 
   /**
-   * Calculating salary tax
+   * Calculating salary tax,
+   * determination costs of getting income and free amount,
+   * tax scale included
    */
   calcTax() {
     let costGettingIncome, taxFreeAmount, taxBasePercentage;
-    /**
-     * Determination costs of getting income and free amount
-     */
+
     elements.stationaryJob.checked ? costGettingIncome = 250.00 : costGettingIncome = 300.00;
     elements.freeAmount.checked ? taxFreeAmount = 43.76 : taxFreeAmount = 0;
     
     const taxBase = Math.round((this.payment - this.socialIns) - costGettingIncome);
 
-    /**
-     * Tax scale
-     */
     if (taxBase > 85528) {
       taxBasePercentage = 0.32;
       this.PIT = Math.round(((14539.76 - taxFreeAmount) + ((taxBase - 85528) * taxBasePercentage)) - this.taxHealthIns);
@@ -70,8 +68,8 @@ export default class EmploymentContract {
   }
 
   /**
-   * Calculating netto payment 
-   * if(elements.ageInputEmp.checked) person is above 26 year old and we calculating the tax and payment, else is under 26 year and we only calculating only the payment
+   * Calculating netto payment. 
+   * If input over 26 years old is checked - person is above 26 year old and we calculating the tax and payment, else is under 26 year and we only calculating only the payment
    */
   calcNettoPayment() {
     if (elements.ageInputEmp.checked) {
@@ -82,3 +80,5 @@ export default class EmploymentContract {
     }
   }
 }
+
+export default EmploymentContract;

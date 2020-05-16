@@ -1,9 +1,9 @@
 import { elements } from '../../view/baseView';
 
 /** Class representing salary object */
-export default class WorkContract {
+class WorkContract {
   /**
-   * @param  {number} payment
+   * @param {number} payment - salary from work
    */
   constructor(payment) {
     this.payment = payment;
@@ -11,23 +11,19 @@ export default class WorkContract {
   }
 
   /**
-   * Calculating salary tax
+   * Calculating salary tax,
+   * determination costs of getting income,
+   * the tax base depending on whether it is a flat-rate tax
    */
   calcTax() {
     let costGettingIncome, costGettingIncomePercentage, taxBase;
     
-    /**
-     * Determination costs of getting income
-     */
     if (elements.workContractCosts20.checked) {
       costGettingIncomePercentage = 0.2;
     } else if (elements.workContractCosts50.checked) {
       costGettingIncomePercentage = 0.5;
     }
     
-    /**
-     * Determining the tax base depending on whether it is a flat-rate tax
-     */
     if (!elements.flatTax.checked) {
       costGettingIncome = Math.round(this.payment * costGettingIncomePercentage);
       taxBase = Math.round(this.payment - costGettingIncome);
@@ -39,8 +35,8 @@ export default class WorkContract {
   }
 
   /**
-   * Calculating netto payment 
-   * if(elements.ageInputWork.checked) person is above 26 year old so we calculate the tax and payment, else is under 26 year and calculate only the payment
+   * Calculating netto payment. 
+   * If input over 26 years old is checked - person is above 26 year old and we calculating the tax and payment, else is under 26 year and we only calculating only the payment
    */
   calcNettoPayment() {
     if (elements.ageInputWork.checked) {
@@ -51,3 +47,5 @@ export default class WorkContract {
     }
   }
 }
+
+export default WorkContract;
