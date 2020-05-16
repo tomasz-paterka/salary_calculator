@@ -1,7 +1,19 @@
+/** @module employmentContractView */
 import { elements, laborFundInfo } from './baseView';
 
+/**
+ * Gets percentage of accident insurance value
+ * @function
+ * @returns {string}
+ */
 export const getAccidentInsInputEmployment = () => elements.accidentInsInputEmp.value;
 
+/**
+ * Function that renders employee results
+ * @function
+ * @param {Object} salary - salary object
+ * @returns {HTMLElement} - created markup
+ */
 export const renderEmployeeResult = salary => {
   const headerMarkup = `
     <p>Pracownik</p>
@@ -31,6 +43,12 @@ export const renderEmployeeResult = salary => {
   }
 };
 
+/**
+ * Function that renders employer results
+ * @function
+ * @param {Object} salary - salary object
+ * @returns {HTMLElement} - created markup
+ */
 export const renderEmployerResult = salary => {
   const headerMarkup = `
     <p>Pracodawca</p>

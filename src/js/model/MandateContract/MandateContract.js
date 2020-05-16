@@ -6,8 +6,7 @@ import { retirementInsPercentage,
   healthInsPercentage, 
   taxHealthInsPercentage, 
   laborFundPercentage, 
-  percentageOfFGSP,
-  minimumSalary } from '../insurancePercentages';
+  percentageOfFGSP } from '../insurancePercentages';
 
 /** Class representing salary object */
 class MandateContract {
@@ -29,7 +28,7 @@ class MandateContract {
     }
 
     const {payment} = this;
-    
+    this.minimumSalary = 2600.00;
     if (elements.socialInsCheck.checked) {
       this.employeeRetirementIns = ((payment * retirementInsPercentage) / 100);
       this.employerRetirementIns = ((payment * retirementInsPercentage) / 100);
@@ -38,7 +37,7 @@ class MandateContract {
       this.accidentIns = ((payment * accidentInsPercentage) / 100);
       this.socialIns = this.employeeRetirementIns + this.employeePensionIns;
       this.socialInsEmployer = this.employerRetirementIns + this.employerPensionIns;
-      payment >= minimumSalary ? this.laborFund = ((payment * laborFundPercentage) / 100) : this.laborFund = 0;
+      payment >= this.minimumSalary ? this.laborFund = ((payment * laborFundPercentage) / 100) : this.laborFund = 0;
       this.contributionFGSP = ((payment * percentageOfFGSP) / 100);
     }
   

@@ -12,6 +12,10 @@ const state = {};
 controlerView();
 elements.contractsBtn.forEach(el => el.addEventListener('click', controlerView));
 
+/**
+ * Function which control whole application
+ * @function
+ */
 const controler = () => {
   const pay = getInput();
   let accidentInsPercentage, salaryFixedObj;
@@ -46,7 +50,7 @@ const controler = () => {
         state.salary.calcInsurance(accidentInsPercentage);
         state.salary.calcNettoPayment();
         diseaseInsLimitInfo(state.salary);
-
+      
         salaryFixedObj = formatNumbers(state.salary)
         mandateContractView.renderEmployeeResult(salaryFixedObj);
         mandateContractView.renderEmployerResult(salaryFixedObj);

@@ -6,5 +6,3 @@ export const healthInsPercentage = 9.00;
 export const taxHealthInsPercentage = 7.75;
 export const laborFundPercentage = 2.45;
 export const percentageOfFGSP = 0.10;
-
-export const minimumSalary = 2600.00;

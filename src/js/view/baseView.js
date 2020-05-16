@@ -1,3 +1,9 @@
+/** @module baseView */
+
+/**
+ * Object with html elements
+ * @typedef {Object} elements
+ */
 export const elements = {
   // Main elements
   salaryInput: document.getElementById('salaryInput'),
@@ -40,8 +46,19 @@ export const elements = {
   workContractCosts50: document.getElementById('work_contract_50'),
 };
 
+/**
+ * Gets payment value
+ * @function
+ * @returns {number} - payment value
+ */
 export const getInput = () => parseFloat(elements.salaryInput.value.replace(',', '.'));
 
+/**
+ * Format object property numbers, replace commas and fixed numbers
+ * @function
+ * @param  {Object} object - salary object
+ * @returns {Object}
+ */
 export const formatNumbers = object => {
   const keys = Object.keys(object);
   const values = Object.values(object);
@@ -50,6 +67,11 @@ export const formatNumbers = object => {
   return salaryFixedObj;
 };
 
+/**
+ * Element inform us that we need to convert new salary or new contract
+ * @function
+ * @returns {HTMLElement} - created markup
+ */
 export const convertInput = () => {
   if (elements.salaryInput.value !== '') {
     const markup = `
@@ -60,19 +82,33 @@ export const convertInput = () => {
   }
 };
 
-export const diseaseInsLimitInfo = obj => {
-  if (obj.payment >= obj.diseaseInsLimit && elements.diseaseInsCheck.checked) {
+/**
+ * Element informing us that the payment has exceeded the limit of the basis for calculating the voluntary sickness insurance contribution 
+ * @function
+ * @param  {Object} object - salary object
+ * @returns {HTMLElement} - created markup
+ */
+export const diseaseInsLimitInfo = object => {
+  if (object.payment >= object.diseaseInsLimit && elements.diseaseInsCheck.checked) {
     const diseaseInsLimitMarkup = `
-      <p>W roku 2020 miesięczny limit podstawy wymiaru dobrowolnej składki na ubezpieczenie chorobowe wynosi ${obj.diseaseInsLimit.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')} zł</p>
+      <p>W roku 2020 miesięczny limit podstawy wymiaru dobrowolnej składki na ubezpieczenie chorobowe wynosi ${object.diseaseInsLimit.toFixed(2).replace(/\B(?=(\d{3})+(?!\d))/g, " ").replace('.', ',')} zł</p>
     `;
     elements.result_info.insertAdjacentHTML('beforeend', diseaseInsLimitMarkup);
   }
 };
 
+/**
+ * Function that deletes the element informing about the conversion
+ * @function
+ */
 export const clearConvertInput = () => {
   elements.iconContainer.innerHTML = '';
 };
 
+/**
+ * Function checks which contract is selected in switch statement and show proper elements
+ * @function
+ */
 export const controlerView = () => {
   switch (true) {
     
@@ -116,6 +152,11 @@ export const controlerView = () => {
   }
 }
 
+/**
+ * Function informing that we need to put a payment value
+ * @function
+ * @returns {HTMLElement} - created markup
+ */
 export const enterAmount = () => {
   const markup = `
     <p class="salary__enter-amount">Proszę wpisać kwotę wypłaty</p>
@@ -123,6 +164,10 @@ export const enterAmount = () => {
   elements.salaryInput.insertAdjacentHTML('afterend', markup);
 };
 
+/**
+ * Function removing element informing that we need to put a payment value
+ * @function
+ */
 export const clearEnterAmount = () => {
   const enterAmountTag = document.querySelector('.salary__enter-amount');
   if (enterAmountTag) {
@@ -130,6 +175,10 @@ export const clearEnterAmount = () => {
   }
 };
 
+/**
+ * Function clearing results
+ * @function
+ */
 export const clearResults = () => {
   elements.employeeResults.innerHTML = '';
   elements.employerResults.innerHTML = '';
@@ -138,10 +187,16 @@ export const clearResults = () => {
   elements.result_info.innerHTML = '';
 };
 
-export const laborFundInfo = obj =>  {
-  if (obj.laborFund === '0,00') {
+/**
+ * Element informing that below minimum payment labor fund is not calculate
+ * @function
+ * @param  {Object} object - salary object
+ * @returns {HTMLElement} - created markup
+ */
+export const laborFundInfo = object =>  {
+  if (object.laborFund === '0,00') {
     const laborFundMarkup = `
-      <p>Poniżej kwoty minimalnego wynagrodzenia, które wynosi ${obj.minimumSalary} zł <br> w roku 2020, nie liczymy składki na Fundusz Pracy.</p>
+      <p>Poniżej kwoty minimalnego wynagrodzenia, które wynosi ${object.minimumSalary} zł <br> w roku 2020, nie liczymy składki na Fundusz Pracy.</p>
     `;
     elements.result_info.insertAdjacentHTML('afterbegin', laborFundMarkup);
   }
