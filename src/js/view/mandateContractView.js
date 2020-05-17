@@ -1,7 +1,19 @@
+/** @module mandateContractView */
 import { elements, laborFundInfo } from './baseView';
 
+/**
+ * Gets percentage of accident insurance value
+ * @function
+ * @returns {string}
+ */
 export const getAccidentInsInputMandate = () => elements.accidentInsInputMan.value;
 
+/**
+ * Function that renders employee results
+ * @function
+ * @param {Object} salary - salary object
+ * @returns {HTMLElement} - created markup
+ */
 export const renderEmployeeResult = salary => {
   let markup, markupUnderAge;
 
@@ -88,7 +100,7 @@ export const renderEmployeeResult = salary => {
       elements.employeeResults.insertAdjacentHTML('afterbegin', markup);
       break;
 
-      /* Cases under 26 year old */
+    /* Cases under 26 year old */
     case elements.socialInsCheck.checked && elements.diseaseInsCheck.checked && elements.healthInsCheck.checked && !elements.ageInputMan.checked:
       markup = `
         <li>Brutto: ${salary.payment}</li>
@@ -206,6 +218,12 @@ export const renderEmployeeResult = salary => {
   }
 };
 
+/**
+ * Function that renders employer results
+ * @function
+ * @param {Object} salary - salary object
+ * @returns {HTMLElement} - created markup
+ */
 export const renderEmployerResult = salary => {
   const headerMarkup = `
     <p>Zleceniodawca</p>

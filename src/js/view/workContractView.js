@@ -1,5 +1,11 @@
+/** @module workContractView */
 import { elements } from './baseView';
 
+/**
+ * Information about flat tax
+ * @function
+ * @returns {HTMLElement} - created markup
+ */
 const flatTaxInfo = () => {
   if (elements.flatTax.checked) {
     const flatTaxInfoMarkup = `
@@ -9,6 +15,12 @@ const flatTaxInfo = () => {
   }
 }
 
+/**
+ * Function that renders employee results
+ * @function
+ * @param {Object} salary - salary object
+ * @returns {HTMLElement} - created markup
+ */
 export const renderEmployeeResult = salary => {
   flatTaxInfo();
 
@@ -36,6 +48,12 @@ export const renderEmployeeResult = salary => {
   }
 };
 
+/**
+ * Function that renders employer results
+ * @function
+ * @param {Object} salary - salary object
+ * @returns {HTMLElement} - created markup
+ */
 export const renderEmployerResult = salary => {
   const headerMarkup = `
     <p>Zleceniodawca</p>
